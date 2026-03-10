@@ -42,7 +42,7 @@ Each questionnaire step is a `<section class="screen">` element. Navigation is h
 | 3 | Freetext | What you talk about |
 | 4 | Choice cards | Spontaneous vs Planned (2 options) |
 | 5 | Choice cards | Relationship intent (3 options) |
-| 6 | Photo upload | File input with preview |
+| 6 | Photo upload | Drag-drop + click upload, 5MB limit, preview |
 | 7 | Contact | WhatsApp + IG + GDPR + submit |
 | 8 | Thank you | Confirmation message |
 

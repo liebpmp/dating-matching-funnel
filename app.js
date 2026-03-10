@@ -78,7 +78,7 @@
 
     // Focus management: focus first interactive element on new screen
     requestAnimationFrame(function () {
-      var focusTarget = targetEl.querySelector('.choice-card, .input-field, .btn-next, .btn-submit, .btn--primary');
+      var focusTarget = targetEl.querySelector('.choice-card, .input-field, .upload, .btn-next, .btn-submit, .btn--primary');
       if (focusTarget) focusTarget.focus();
     });
   }
@@ -196,37 +196,97 @@
 
   // ---- Photo Upload ----
 
+  var MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
   var uploadArea = document.getElementById('uploadArea');
   var photoInput = document.getElementById('photoInput');
   var uploadPreview = document.getElementById('uploadPreview');
   var previewImg = document.getElementById('previewImg');
   var removePhoto = document.getElementById('removePhoto');
+  var uploadError = document.getElementById('uploadError');
+
+  function showUploadError() {
+    if (uploadError) uploadError.classList.add('upload__error--visible');
+  }
+
+  function hideUploadError() {
+    if (uploadError) uploadError.classList.remove('upload__error--visible');
+  }
+
+  function handlePhotoFile(file) {
+    if (!file || !file.type.startsWith('image/')) return;
+
+    hideUploadError();
+
+    if (file.size > MAX_FILE_SIZE) {
+      showUploadError();
+      return;
+    }
+
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      previewImg.src = e.target.result;
+      uploadArea.hidden = true;
+      uploadPreview.hidden = false;
+      saveAnswer('photo', file.name);
+      // Store data URL for back-navigation restore
+      state._photoDataUrl = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
 
   if (uploadArea && photoInput) {
+    // Click to upload
     uploadArea.addEventListener('click', function () {
       photoInput.click();
     });
 
-    photoInput.addEventListener('change', function () {
-      var file = photoInput.files[0];
-      if (!file) return;
-
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        previewImg.src = e.target.result;
-        uploadArea.hidden = true;
-        uploadPreview.hidden = false;
-        saveAnswer('photo', file.name);
-      };
-      reader.readAsDataURL(file);
+    // Keyboard activation (Enter/Space)
+    uploadArea.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        photoInput.click();
+      }
     });
 
+    // File input change
+    photoInput.addEventListener('change', function () {
+      handlePhotoFile(photoInput.files[0]);
+    });
+
+    // Drag-and-drop
+    uploadArea.addEventListener('dragenter', function (e) {
+      e.preventDefault();
+      uploadArea.classList.add('upload--dragover');
+    });
+
+    uploadArea.addEventListener('dragover', function (e) {
+      e.preventDefault();
+      uploadArea.classList.add('upload--dragover');
+    });
+
+    uploadArea.addEventListener('dragleave', function (e) {
+      e.preventDefault();
+      uploadArea.classList.remove('upload--dragover');
+    });
+
+    uploadArea.addEventListener('drop', function (e) {
+      e.preventDefault();
+      uploadArea.classList.remove('upload--dragover');
+      var files = e.dataTransfer.files;
+      if (files.length > 0) {
+        handlePhotoFile(files[0]);
+      }
+    });
+
+    // Remove photo
     removePhoto.addEventListener('click', function () {
       photoInput.value = '';
       previewImg.src = '';
       uploadPreview.hidden = true;
       uploadArea.hidden = false;
+      hideUploadError();
       delete state.answers.photo;
+      delete state._photoDataUrl;
     });
   }
 
@@ -299,25 +359,35 @@
     }
   });
 
-  // ---- Restore choice-card selection when navigating back ----
+  // ---- Restore UI state when navigating back ----
 
-  // When going back to a choice screen, re-highlight the previously selected card
   var observer = new MutationObserver(function () {
     screens.forEach(function (screen) {
       if (!screen.classList.contains('screen--active')) return;
+
+      // Restore choice card selections
       var group = screen.querySelector('.screen__choices');
-      if (!group) return;
-      var field = group.getAttribute('data-field');
-      var savedValue = state.answers[field];
-      if (!savedValue) return;
-      var cards = group.querySelectorAll('.choice-card');
-      cards.forEach(function (card) {
-        if (card.getAttribute('data-value') === savedValue) {
-          card.classList.add('choice-card--selected');
-        } else {
-          card.classList.remove('choice-card--selected');
+      if (group) {
+        var field = group.getAttribute('data-field');
+        var savedValue = state.answers[field];
+        if (savedValue) {
+          var cards = group.querySelectorAll('.choice-card');
+          cards.forEach(function (card) {
+            if (card.getAttribute('data-value') === savedValue) {
+              card.classList.add('choice-card--selected');
+            } else {
+              card.classList.remove('choice-card--selected');
+            }
+          });
         }
-      });
+      }
+
+      // Restore photo upload preview on screen 6
+      if (screen.getAttribute('data-screen') === '6' && state._photoDataUrl) {
+        previewImg.src = state._photoDataUrl;
+        uploadArea.hidden = true;
+        uploadPreview.hidden = false;
+      }
     });
   });
 

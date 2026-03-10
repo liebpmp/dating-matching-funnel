@@ -52,3 +52,15 @@
   - choice-card--visual modifier with flex-direction:column + centered text creates a distinct "this or that" visual while reusing all existing JS (auto-advance, selection restore)
   - Hint text below labels uses a separate .choice-card__hint span for additional context without affecting the card's primary label
   - No JS changes needed — existing querySelectorAll('.screen__choices') and data-value patterns handle new card variants automatically
+
+---
+
+## 2026-03-10 01:27 - US-005
+- Implemented: Enhanced photo upload screen (screen 6) with premium drag-drop zone featuring camera icon, file type/size hints, and drag-over visual state. Added 5MB file size validation with animated error message. Drag-and-drop support via dragenter/dragover/dragleave/drop events. Mobile camera picker via capture="user" attribute. Photo preview with gold-bordered image and remove button (X icon + red hover). Preview restore on back-navigation via stored data URL in state. Keyboard-accessible upload area with role="button", tabindex="0", and Enter/Space activation.
+- Files: index.html, styles.css, app.js
+- Learnings:
+  - Centralized handlePhotoFile() for both click and drag-drop avoids duplicated validation/preview logic
+  - Storing photo data URL on state._photoDataUrl enables preview restore when navigating back to screen 6
+  - role="button" + tabindex="0" on a div makes it keyboard-accessible while supporting drag-drop layout
+  - upload__error uses same opacity + max-height pattern as input-error for consistent animated reveal
+  - Remove button hover turns red (#e74c3c) instead of white for clearer destructive action intent

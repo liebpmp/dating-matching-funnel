@@ -71,6 +71,24 @@
       "answer": "The two visual choices (Spontaneous Adventure vs Planned Evening) benefit from a short descriptor to help users decide. The hint text uses --color-text-muted and transitions to --color-gold-light on selection, maintaining the premium feel without cluttering the card.",
       "story_id": "US-004",
       "timestamp": "2026-03-10 01:23"
+    },
+    {
+      "question": "Why use a centralized handlePhotoFile() function for both click and drag-drop?",
+      "answer": "Both click-to-upload and drag-drop produce a File object. A single handlePhotoFile() handles validation (5MB limit, image type check) and FileReader preview in one place, avoiding duplicated logic between the two input paths.",
+      "story_id": "US-005",
+      "timestamp": "2026-03-10 01:27"
+    },
+    {
+      "question": "Why store the photo data URL on state._photoDataUrl?",
+      "answer": "When the user navigates back to screen 6, the MutationObserver restores the preview by setting previewImg.src from state._photoDataUrl. Without storing it, the preview would be lost since the FileReader result is ephemeral. The underscore prefix signals it's internal state, not a user answer.",
+      "story_id": "US-005",
+      "timestamp": "2026-03-10 01:27"
+    },
+    {
+      "question": "Why use role='button' and tabindex='0' on the upload area instead of a native button?",
+      "answer": "The upload area is a div that acts as a click/drag target. Adding role='button' + tabindex='0' makes it keyboard-accessible and announces correctly to screen readers. A native button wouldn't support drag-drop or the visual layout needed for the drop zone.",
+      "story_id": "US-005",
+      "timestamp": "2026-03-10 01:27"
     }
   ]
 }

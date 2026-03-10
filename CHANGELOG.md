@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-03-10] US-005 — Photo upload screen
+- Enhanced upload area with premium drag-drop zone, camera icon, file type/size hints, and animated drag-over state
+- Added 5MB file size validation with animated error message, and drag-and-drop support alongside click-to-upload
+- Photo preview with gold-bordered image, remove button with X icon, and preview restore on back-navigation
+
 ## [2026-03-10] US-004 — Slider + intent screens
 - Enhanced lifestyle screen (screen 4) with side-by-side visual choice cards — globe icon for adventure, calendar icon for planned — with hint text and responsive sizing
 - Added inline SVG icons to relationship intent cards (screen 5): heart for serious, coffee cup for casual, star for open

@@ -209,13 +209,24 @@
         </button>
         <h2 class="screen__title">Show yourself!</h2>
         <p class="screen__subtitle">Upload your best photo. First impressions matter.</p>
-        <div class="screen__upload" id="uploadArea">
-          <p class="screen__upload-text">Tap to upload a photo</p>
+        <div class="upload" id="uploadArea" role="button" tabindex="0" aria-label="Upload a photo — click or drag and drop">
+          <svg class="upload__icon" width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="12" cy="13" r="4" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+          <p class="upload__text">Tap or drag a photo here</p>
+          <p class="upload__hint">JPG, PNG — max 5 MB</p>
           <input type="file" id="photoInput" accept="image/*" capture="user" aria-label="Upload a photo" hidden>
         </div>
-        <div class="screen__upload-preview" id="uploadPreview" hidden>
+        <p class="upload__error" id="uploadError" aria-live="polite">File is too large. Please choose an image under 5 MB.</p>
+        <div class="upload__preview" id="uploadPreview" hidden>
           <img id="previewImg" alt="Your uploaded photo">
-          <button class="btn-remove" type="button" id="removePhoto" aria-label="Remove photo">Remove</button>
+          <button class="btn-remove" type="button" id="removePhoto" aria-label="Remove photo">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            Remove
+          </button>
         </div>
         <button class="btn btn--primary btn-next" type="button">
           Continue

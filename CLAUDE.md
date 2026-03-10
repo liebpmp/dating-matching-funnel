@@ -77,3 +77,12 @@ Nach Submit: Thank-You Screen mit "Wir melden uns innerhalb von 48h"
 - [US-004] Side-by-side card layout (screen__choices--visual) uses flex-direction:row with flex:1 on each card for equal sizing
 - [US-004] Hint text (.choice-card__hint) provides additional context below labels, transitions to gold-light on selection
 - [US-004] No JS changes needed for new card variants — existing querySelectorAll('.screen__choices') handles all choice screens
+- [US-004] Side-by-side visual cards (flex-direction: row) work better than a range slider for binary choices — clearer tap targets on mobile, consistent cross-browser
+- [US-004] choice-card--visual modifier with flex-direction:column + centered text creates a distinct "this or that" visual while reusing all existing JS (auto-advance, selection restore)
+- [US-004] Hint text below labels uses a separate .choice-card__hint span for additional context without affecting the card's primary label
+- [US-004] No JS changes needed — existing querySelectorAll('.screen__choices') and data-value patterns handle new card variants automatically
+- [US-005] Centralized handlePhotoFile() handles both click and drag-drop file inputs with shared validation/preview logic
+- [US-005] Photo data URL stored on state._photoDataUrl for MutationObserver-based preview restore on back-navigation
+- [US-005] Upload area uses role="button" + tabindex="0" for keyboard accessibility while supporting drag-drop layout
+- [US-005] Upload error uses same opacity + max-height pattern as input-error for consistent animated reveal/hide
+- [US-005] Drag-over state uses solid border + gold tint background to visually distinguish from hover
