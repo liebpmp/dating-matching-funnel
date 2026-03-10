@@ -35,11 +35,170 @@
       </div>
     </section>
 
-    <!-- Screen 1: Personality (placeholder for US-002+) -->
+    <!-- Screen 1: Personality -->
     <section class="screen" id="screen-1" data-screen="1" aria-label="Personality question">
       <div class="screen__content">
+        <button class="btn-back" type="button" aria-label="Go back">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M16 10H4m0 0l4-4m-4 4l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Back
+        </button>
         <h2 class="screen__title">What describes you best?</h2>
-        <p class="screen__placeholder">Coming soon...</p>
+        <p class="screen__subtitle">Pick the one that fits you most.</p>
+        <div class="screen__choices" data-field="personality">
+          <button class="choice-card" type="button" data-value="adventurer">Adventurer</button>
+          <button class="choice-card" type="button" data-value="creative">Creative Soul</button>
+          <button class="choice-card" type="button" data-value="powerwoman">Powerwoman</button>
+          <button class="choice-card" type="button" data-value="relaxed">Relaxed Enjoyer</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Screen 2: Profession / Passion -->
+    <section class="screen" id="screen-2" data-screen="2" aria-label="Profession question">
+      <div class="screen__content">
+        <button class="btn-back" type="button" aria-label="Go back">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M16 10H4m0 0l4-4m-4 4l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Back
+        </button>
+        <h2 class="screen__title">What do you do — or what are you passionate about?</h2>
+        <p class="screen__subtitle">Tell us a little about yourself.</p>
+        <div class="screen__input-wrap">
+          <textarea class="input-field input-field--textarea" data-field="profession" placeholder="e.g. Marketing manager who loves yoga and travel..." rows="3" aria-label="Your profession or passion"></textarea>
+        </div>
+        <button class="btn btn--primary btn-next" type="button">
+          Continue
+          <svg class="btn__arrow" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- Screen 3: Talk About -->
+    <section class="screen" id="screen-3" data-screen="3" aria-label="Conversation topic question">
+      <div class="screen__content">
+        <button class="btn-back" type="button" aria-label="Go back">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M16 10H4m0 0l4-4m-4 4l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Back
+        </button>
+        <h2 class="screen__title">What could you talk about for hours?</h2>
+        <p class="screen__subtitle">There are no wrong answers here.</p>
+        <div class="screen__input-wrap">
+          <textarea class="input-field input-field--textarea" data-field="talkAbout" placeholder="e.g. Travel stories, psychology, good food..." rows="3" aria-label="What you love talking about"></textarea>
+        </div>
+        <button class="btn btn--primary btn-next" type="button">
+          Continue
+          <svg class="btn__arrow" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- Screen 4: Adventure vs Planned -->
+    <section class="screen" id="screen-4" data-screen="4" aria-label="Lifestyle preference">
+      <div class="screen__content">
+        <button class="btn-back" type="button" aria-label="Go back">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M16 10H4m0 0l4-4m-4 4l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Back
+        </button>
+        <h2 class="screen__title">What's more important to you?</h2>
+        <p class="screen__subtitle">Choose the one that resonates.</p>
+        <div class="screen__choices" data-field="lifestyle">
+          <button class="choice-card" type="button" data-value="spontaneous">Spontaneous Adventure</button>
+          <button class="choice-card" type="button" data-value="planned">Planned Evening</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Screen 5: Relationship Intent -->
+    <section class="screen" id="screen-5" data-screen="5" aria-label="Relationship intent">
+      <div class="screen__content">
+        <button class="btn-back" type="button" aria-label="Go back">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M16 10H4m0 0l4-4m-4 4l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Back
+        </button>
+        <h2 class="screen__title">What are you looking for?</h2>
+        <p class="screen__subtitle">Be honest — there's no wrong answer.</p>
+        <div class="screen__choices" data-field="intent">
+          <button class="choice-card" type="button" data-value="serious">Serious Relationship</button>
+          <button class="choice-card" type="button" data-value="casual">Getting to Know Someone</button>
+          <button class="choice-card" type="button" data-value="open">Open to Anything</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Screen 6: Photo Upload -->
+    <section class="screen" id="screen-6" data-screen="6" aria-label="Photo upload">
+      <div class="screen__content">
+        <button class="btn-back" type="button" aria-label="Go back">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M16 10H4m0 0l4-4m-4 4l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Back
+        </button>
+        <h2 class="screen__title">Show yourself!</h2>
+        <p class="screen__subtitle">Upload your best photo. First impressions matter.</p>
+        <div class="screen__upload" id="uploadArea">
+          <p class="screen__upload-text">Tap to upload a photo</p>
+          <input type="file" id="photoInput" accept="image/*" capture="user" aria-label="Upload a photo" hidden>
+        </div>
+        <div class="screen__upload-preview" id="uploadPreview" hidden>
+          <img id="previewImg" alt="Your uploaded photo">
+          <button class="btn-remove" type="button" id="removePhoto" aria-label="Remove photo">Remove</button>
+        </div>
+        <button class="btn btn--primary btn-next" type="button">
+          Continue
+          <svg class="btn__arrow" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- Screen 7: Contact + GDPR + Submit -->
+    <section class="screen" id="screen-7" data-screen="7" aria-label="Contact information">
+      <div class="screen__content">
+        <button class="btn-back" type="button" aria-label="Go back">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M16 10H4m0 0l4-4m-4 4l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Back
+        </button>
+        <h2 class="screen__title">How can we reach you?</h2>
+        <p class="screen__subtitle">We'll get back to you within 48 hours.</p>
+        <div class="screen__input-wrap">
+          <input class="input-field" type="tel" data-field="whatsapp" placeholder="WhatsApp number" aria-label="WhatsApp number">
+          <input class="input-field" type="text" data-field="instagram" placeholder="Instagram handle" aria-label="Instagram handle">
+        </div>
+        <label class="checkbox-wrap" for="gdprCheckbox">
+          <input type="checkbox" id="gdprCheckbox" data-field="gdpr">
+          <span class="checkbox-wrap__label">I agree to the <a href="#" class="text-gold">privacy policy</a></span>
+        </label>
+        <button class="btn btn--primary btn-submit" type="button" id="submitBtn" disabled>
+          Submit Application
+        </button>
+      </div>
+    </section>
+
+    <!-- Screen 8: Thank You -->
+    <section class="screen" id="screen-8" data-screen="8" aria-label="Thank you">
+      <div class="screen__content screen__content--center">
+        <div class="thankyou">
+          <div class="thankyou__icon">&#10003;</div>
+          <h2 class="screen__title">You're In!</h2>
+          <p class="thankyou__text">Thanks for applying. We'll review your profile and get back to you within <strong class="text-gold">48 hours</strong>.</p>
+        </div>
       </div>
     </section>
 

@@ -17,6 +17,30 @@
       "answer": "The CTA on the welcome screen navigates to screen 1. Including a minimal placeholder ensures the navigation works correctly for US-001 verification, and US-002 will flesh it out with the full form engine.",
       "story_id": "US-001",
       "timestamp": "2026-03-10 01:11"
+    },
+    {
+      "question": "Why use TOTAL_STEPS=7 instead of 8?",
+      "answer": "The PRD says '8 total steps' but screen 0 is welcome and screen 8 is thank-you — neither are questionnaire steps. The 7 actual questionnaire screens (1-7) are what the progress bar tracks. Progress = currentScreen/7 * 100.",
+      "story_id": "US-002",
+      "timestamp": "2026-03-10 01:14"
+    },
+    {
+      "question": "Why auto-advance choice cards with a 300ms delay?",
+      "answer": "Instant advance feels jarring — users don't see their selection. A 300ms delay gives visual feedback (the card highlights with gold border/tint) before sliding to the next screen, creating a Heyflow-like premium feel.",
+      "story_id": "US-002",
+      "timestamp": "2026-03-10 01:14"
+    },
+    {
+      "question": "Why use MutationObserver to restore choice selections on back-navigation?",
+      "answer": "When navigating back, the screen gets the screen--active class. A MutationObserver watching class changes on the form container detects this and restores the previously-selected card from state.answers. This avoids coupling the restoration logic into goToScreen.",
+      "story_id": "US-002",
+      "timestamp": "2026-03-10 01:14"
+    },
+    {
+      "question": "Why use requestAnimationFrame for focus management after transitions?",
+      "answer": "After goToScreen sets the target screen to active, the browser needs a frame to apply the CSS transition. Using requestAnimationFrame ensures the focus call happens after the screen is visible, avoiding focus on hidden elements.",
+      "story_id": "US-002",
+      "timestamp": "2026-03-10 01:14"
     }
   ]
 }

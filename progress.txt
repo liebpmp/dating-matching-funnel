@@ -18,3 +18,15 @@
   - Progress bar uses will-change:width for GPU-accelerated transitions
   - Screen transitions use transform+opacity for 60fps performance (will-change hints added)
   - Included a placeholder screen-1 so CTA navigation can be verified immediately
+
+---
+
+## 2026-03-10 01:14 - US-002
+- Implemented: Full multi-step form engine with 9 screens (welcome + 7 questions + thank-you). JS handles forward/back navigation with smooth CSS slide transitions (translateX + opacity, 500ms ease). Choice cards auto-advance after 300ms delay. Back button on all question screens. Keyboard Enter advances through all screen types. Form state stored in JS object and logged as JSON on submit. Photo upload with FileReader preview. GDPR checkbox gates submit button. MutationObserver restores choice selections when navigating back.
+- Files: index.html, styles.css, app.js
+- Learnings:
+  - Choice card auto-advance needs a brief delay (300ms) so users see their selection highlighted before sliding
+  - MutationObserver on class attribute changes is a clean way to restore UI state when navigating back to choice screens
+  - TOTAL_STEPS changed from 8 to 7 (screens 1-7 are questionnaire, screen 8 is thank-you, screen 0 is welcome)
+  - Focus management after screen transitions improves keyboard accessibility (requestAnimationFrame timing)
+  - Submit button uses disabled attribute gated by GDPR checkbox change event

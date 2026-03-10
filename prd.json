@@ -29,7 +29,7 @@
         "Keyboard Enter to proceed"
       ],
       "priority": 2,
-      "passes": false,
+      "passes": true,
       "notes": ""
     },
     {
