@@ -77,3 +77,19 @@
   - validateContactScreen() is separate from validateCurrentScreen() because submit doesn't go through btn-next flow
   - Error clearing via event delegation needs to check grandparent for nested input-group layouts
   - SELECT elements need to be included in saveCurrentScreenInputs() alongside INPUT and TEXTAREA
+
+---
+
+## 2026-03-10 01:36 - US-007
+- Implemented: Premium visual polish across all screens. Welcome screen: radial gold glow with breathing animation, badge shimmer sweep, gradient text on headline, staggered fade-up entrance (5 elements with 100-150ms delays). Button micro-animations: CTA pulse ring on welcome, arrow bounce on hover, press scale on buttons and choice cards, enhanced gold glow shadows. Staggered entrance animations for all screen content (titles, subtitles, choice cards individually). Submit button loading spinner state (800ms, CSS-only). Thank-you screen: icon pop-in with elastic easing, checkmark SVG draw animation. Cross-browser: viewport-fit=cover for notched devices, safe-area-inset-bottom padding, -webkit-tap-highlight-color:transparent, -webkit-touch-callout:none. Accessibility: prefers-reduced-motion media query disables all animations.
+- Files: index.html, styles.css, app.js
+- Learnings:
+  - CSS @keyframes with animation-fill-mode:both ensures elements start invisible and end visible for staggered entrances
+  - Radial-gradient glow with scale animation on ::before pseudo-element avoids layout shifts while creating depth
+  - Shimmer effect on badge uses left:-100% to 100% animation on a ::after pseudo-element with linear-gradient
+  - background-clip:text + -webkit-text-fill-color:transparent creates gradient text that works in Chrome and Safari
+  - Submit loading state uses ::after pseudo-element spinner so no HTML changes needed beyond wrapping text in a span
+  - stroke-dasharray/dashoffset animation creates a convincing "draw" effect for SVG checkmark paths
+  - prefers-reduced-motion:reduce should override with !important to catch all animation/transition properties
+  - viewport-fit=cover meta tag is required for env(safe-area-inset-*) to take effect on iOS
+  - cubic-bezier(0.175, 0.885, 0.32, 1.275) creates an elastic overshoot effect for pop-in animations

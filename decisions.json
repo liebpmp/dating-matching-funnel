@@ -113,6 +113,36 @@
       "answer": "The combined format (e.g. '+49 1234567890') is the most useful representation for the service to contact users via WhatsApp. The raw countryCode is also stored separately for potential back-navigation restoration, where the select and input need to be populated independently.",
       "story_id": "US-006",
       "timestamp": "2026-03-10 01:31"
+    },
+    {
+      "question": "Why use CSS-only animations instead of a JS animation library?",
+      "answer": "The project constraint prohibits external dependencies beyond Google Fonts. CSS @keyframes animations are GPU-accelerated (transform/opacity), run at 60fps, and avoid JS main thread blocking. They match the existing transition patterns in the codebase.",
+      "story_id": "US-007",
+      "timestamp": "2026-03-10 01:36"
+    },
+    {
+      "question": "Why add a radial glow and shimmer instead of a background image for the welcome screen?",
+      "answer": "Background images require external assets and slow page load. CSS radial-gradient + @keyframes creates a living, breathing glow effect with zero HTTP requests. The shimmer on the badge adds perceived premium quality without visual clutter.",
+      "story_id": "US-007",
+      "timestamp": "2026-03-10 01:36"
+    },
+    {
+      "question": "Why stagger entrance animations per-element instead of animating the whole screen at once?",
+      "answer": "Staggered fade-up animations (100-150ms delay between elements) create a cascading reveal that feels premium and intentional, like Heyflow or Apple product pages. Animating the whole screen at once would feel flat and generic.",
+      "story_id": "US-007",
+      "timestamp": "2026-03-10 01:36"
+    },
+    {
+      "question": "Why add an 800ms loading state on submit instead of navigating immediately?",
+      "answer": "An instant transition to the thank-you screen feels cheap — like nothing happened. The brief spinner creates the perception that data is being processed/submitted, building trust and making the experience feel more substantial. The 800ms duration is long enough to notice but short enough to avoid frustration.",
+      "story_id": "US-007",
+      "timestamp": "2026-03-10 01:36"
+    },
+    {
+      "question": "Why include prefers-reduced-motion media query?",
+      "answer": "Accessibility best practice: users with vestibular disorders or motion sensitivity can set this OS-level preference. The query reduces all animation/transition durations to near-zero, making the funnel usable for everyone while keeping the premium experience for default users.",
+      "story_id": "US-007",
+      "timestamp": "2026-03-10 01:36"
     }
   ]
 }

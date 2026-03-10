@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-03-10] US-007 — Polish + animations + final QA
+- Added premium welcome screen effects: radial gold glow, badge shimmer, gradient headline text, staggered fade-up entrance animations
+- Added button micro-animations (CTA pulse ring, arrow bounce, press scale), staggered choice card entrances, and submit button loading spinner
+- Enhanced thank-you screen with icon pop-in, checkmark draw animation; added cross-browser polish (safe-area-inset, tap-highlight, reduced-motion)
+
 ## [2026-03-10] US-006 — Contact + GDPR + Submit + Thank You
 - Enhanced contact screen with country code select dropdown (15 countries) + phone number input group, and @ prefix for Instagram handle
 - Added WhatsApp validation (required), submit collects all form data as JSON, GDPR checkbox gates submit button

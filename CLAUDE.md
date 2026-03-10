@@ -91,3 +91,9 @@ Nach Submit: Thank-You Screen mit "Wir melden uns innerhalb von 48h"
 - [US-005] role="button" + tabindex="0" on a div makes it keyboard-accessible while supporting drag-drop layout
 - [US-005] upload__error uses same opacity + max-height pattern as input-error for consistent animated reveal
 - [US-005] Remove button hover turns red (#e74c3c) instead of white for clearer destructive action intent
+- [US-006] Country code select with flag emojis provides better mobile UX than a text input for international phone numbers
+- [US-006] Input-group pattern (select + input side-by-side with joined borders) creates a cohesive phone number input
+- [US-006] @ prefix using input-group__prefix span with border-radius adjustments integrates cleanly with the input field
+- [US-006] validateContactScreen() is separate from validateCurrentScreen() because submit doesn't go through btn-next flow
+- [US-006] Error clearing via event delegation needs to check grandparent for nested input-group layouts
+- [US-006] SELECT elements need to be included in saveCurrentScreenInputs() alongside INPUT and TEXTAREA

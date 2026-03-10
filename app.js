@@ -346,8 +346,15 @@
       // Log collected data
       console.log('Form submitted:', JSON.stringify(state.answers, null, 2));
 
-      // Navigate to thank-you screen
-      goToScreen(8);
+      // Show loading state briefly for premium feel
+      submitBtn.classList.add('btn-submit--loading');
+      submitBtn.disabled = true;
+
+      setTimeout(function () {
+        submitBtn.classList.remove('btn-submit--loading');
+        // Navigate to thank-you screen
+        goToScreen(8);
+      }, 800);
     });
   }
 
