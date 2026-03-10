@@ -307,7 +307,9 @@ body {
 }
 
 .choice-card {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
   width: 100%;
   padding: var(--spacing-md) var(--spacing-lg);
   background-color: var(--color-surface);
@@ -319,13 +321,18 @@ body {
   font-weight: 500;
   text-align: left;
   cursor: pointer;
-  transition: border-color var(--transition-fast), background-color var(--transition-fast), transform var(--transition-fast);
+  transition: border-color var(--transition-fast), background-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .choice-card:hover {
   border-color: var(--color-gold);
   background-color: var(--color-surface-hover);
   transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(201, 169, 110, 0.1);
+}
+
+.choice-card:active {
+  transform: translateY(0);
 }
 
 .choice-card:focus-visible {
@@ -337,6 +344,22 @@ body {
   border-color: var(--color-gold);
   background-color: rgba(201, 169, 110, 0.1);
   color: var(--color-gold);
+  box-shadow: 0 0 0 1px var(--color-gold);
+}
+
+.choice-card__icon {
+  flex-shrink: 0;
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+}
+
+.choice-card:hover .choice-card__icon,
+.choice-card--selected .choice-card__icon {
+  color: var(--color-gold);
+}
+
+.choice-card__label {
+  flex: 1;
 }
 
 /* ============================================
@@ -375,6 +398,25 @@ body {
   resize: vertical;
   min-height: 80px;
   line-height: 1.5;
+}
+
+.input-field--error {
+  border-color: #e74c3c;
+}
+
+.input-error {
+  color: #e74c3c;
+  font-size: 0.8125rem;
+  margin-top: var(--spacing-xs);
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity var(--transition-fast), max-height var(--transition-fast);
+}
+
+.input-error--visible {
+  opacity: 1;
+  max-height: 2em;
 }
 
 /* ============================================

@@ -30,3 +30,14 @@
   - TOTAL_STEPS changed from 8 to 7 (screens 1-7 are questionnaire, screen 8 is thank-you, screen 0 is welcome)
   - Focus management after screen transitions improves keyboard accessibility (requestAnimationFrame timing)
   - Submit button uses disabled attribute gated by GDPR checkbox change event
+
+---
+
+## 2026-03-10 01:19 - US-003
+- Implemented: Added inline SVG icons to 4 personality choice cards (mountain/adventurer, lightbulb/creative, lightning/powerwoman, smiley/relaxed). Enhanced choice card styling with icon+label flex layout, box-shadow on hover, double-border on selection. Added freetext validation for screens 2+3 — Continue button blocked until textarea is non-empty, with animated error messages and red border highlight. Validation clears on input via event delegation.
+- Files: index.html, styles.css, app.js
+- Learnings:
+  - Inline SVGs styled via currentColor inherit color transitions from parent for seamless hover/selection effects
+  - Event delegation on formContainer for input events is cleaner than per-field listeners for clearing validation errors
+  - max-height + opacity animation is a reliable pattern for revealing/hiding error messages since display:none can't be transitioned
+  - Choice cards with icon+label layout use flex with gap for consistent alignment across cards with/without icons

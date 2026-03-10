@@ -47,10 +47,34 @@
         <h2 class="screen__title">What describes you best?</h2>
         <p class="screen__subtitle">Pick the one that fits you most.</p>
         <div class="screen__choices" data-field="personality">
-          <button class="choice-card" type="button" data-value="adventurer">Adventurer</button>
-          <button class="choice-card" type="button" data-value="creative">Creative Soul</button>
-          <button class="choice-card" type="button" data-value="powerwoman">Powerwoman</button>
-          <button class="choice-card" type="button" data-value="relaxed">Relaxed Enjoyer</button>
+          <button class="choice-card" type="button" data-value="adventurer">
+            <svg class="choice-card__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 2L2 22h20L12 2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12 16v.01M12 10v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span class="choice-card__label">Adventurer</span>
+          </button>
+          <button class="choice-card" type="button" data-value="creative">
+            <svg class="choice-card__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 2a7 7 0 0 1 7 7c0 3-2 5.5-4 7l-1 4H10l-1-4c-2-1.5-4-4-4-7a7 7 0 0 1 7-7z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10 20h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span class="choice-card__label">Creative Soul</span>
+          </button>
+          <button class="choice-card" type="button" data-value="powerwoman">
+            <svg class="choice-card__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="choice-card__label">Powerwoman</span>
+          </button>
+          <button class="choice-card" type="button" data-value="relaxed">
+            <svg class="choice-card__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M8 14s1.5 2 4 2 4-2 4-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M9 9h.01M15 9h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span class="choice-card__label">Relaxed Enjoyer</span>
+          </button>
         </div>
       </div>
     </section>
@@ -67,7 +91,8 @@
         <h2 class="screen__title">What do you do — or what are you passionate about?</h2>
         <p class="screen__subtitle">Tell us a little about yourself.</p>
         <div class="screen__input-wrap">
-          <textarea class="input-field input-field--textarea" data-field="profession" placeholder="e.g. Marketing manager who loves yoga and travel..." rows="3" aria-label="Your profession or passion"></textarea>
+          <textarea class="input-field input-field--textarea" data-field="profession" placeholder="e.g. Marketing manager who loves yoga and travel..." rows="3" aria-label="Your profession or passion" required></textarea>
+          <p class="input-error" aria-live="polite">Please share a little about yourself.</p>
         </div>
         <button class="btn btn--primary btn-next" type="button">
           Continue
@@ -90,7 +115,8 @@
         <h2 class="screen__title">What could you talk about for hours?</h2>
         <p class="screen__subtitle">There are no wrong answers here.</p>
         <div class="screen__input-wrap">
-          <textarea class="input-field input-field--textarea" data-field="talkAbout" placeholder="e.g. Travel stories, psychology, good food..." rows="3" aria-label="What you love talking about"></textarea>
+          <textarea class="input-field input-field--textarea" data-field="talkAbout" placeholder="e.g. Travel stories, psychology, good food..." rows="3" aria-label="What you love talking about" required></textarea>
+          <p class="input-error" aria-live="polite">Please tell us what you love talking about.</p>
         </div>
         <button class="btn btn--primary btn-next" type="button">
           Continue

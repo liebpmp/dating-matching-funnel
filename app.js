@@ -141,11 +141,43 @@
     });
   });
 
+  // ---- Validation ----
+
+  function validateCurrentScreen() {
+    var currentEl = screens[state.currentScreen];
+    var requiredFields = currentEl.querySelectorAll('[data-field][required]');
+    var valid = true;
+
+    requiredFields.forEach(function (field) {
+      var errorEl = field.parentElement.querySelector('.input-error');
+      if (!field.value.trim()) {
+        field.classList.add('input-field--error');
+        if (errorEl) errorEl.classList.add('input-error--visible');
+        valid = false;
+      } else {
+        field.classList.remove('input-field--error');
+        if (errorEl) errorEl.classList.remove('input-error--visible');
+      }
+    });
+
+    return valid;
+  }
+
+  // Clear error state on input
+  formContainer.addEventListener('input', function (e) {
+    if (e.target.classList.contains('input-field--error')) {
+      e.target.classList.remove('input-field--error');
+      var errorEl = e.target.parentElement.querySelector('.input-error');
+      if (errorEl) errorEl.classList.remove('input-error--visible');
+    }
+  });
+
   // ---- Continue Buttons (freetext + upload screens) ----
 
   var nextButtons = formContainer.querySelectorAll('.btn-next');
   nextButtons.forEach(function (btn) {
     btn.addEventListener('click', function () {
+      if (!validateCurrentScreen()) return;
       // Save any input data from current screen
       saveCurrentScreenInputs();
       goForward();
@@ -258,7 +290,7 @@
         return;
       }
 
-      // If current screen has a continue button, click it
+      // If current screen has a continue button, click it (validation handled in click handler)
       var next = currentEl.querySelector('.btn-next');
       if (next) {
         next.click();

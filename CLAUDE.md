@@ -59,3 +59,13 @@ Nach Submit: Thank-You Screen mit "Wir melden uns innerhalb von 48h"
 - [US-002] MutationObserver restores choice card selections on back-navigation
 - [US-002] requestAnimationFrame for focus management after screen transitions
 - [US-002] GDPR checkbox change event gates submit button via disabled attribute
+- [US-002] Choice card auto-advance needs a brief delay (300ms) so users see their selection highlighted before sliding
+- [US-002] MutationObserver on class attribute changes is a clean way to restore UI state when navigating back to choice screens
+- [US-002] TOTAL_STEPS changed from 8 to 7 (screens 1-7 are questionnaire, screen 8 is thank-you, screen 0 is welcome)
+- [US-002] Focus management after screen transitions improves keyboard accessibility (requestAnimationFrame timing)
+- [US-002] Submit button uses disabled attribute gated by GDPR checkbox change event
+- [US-003] Choice card icons use inline SVGs with currentColor for CSS-driven color transitions
+- [US-003] Choice cards use flex layout with choice-card__icon + choice-card__label for icon+text alignment
+- [US-003] Freetext validation uses required attribute + validateCurrentScreen() before goForward()
+- [US-003] Validation errors animate with opacity + max-height (display:none can't be transitioned)
+- [US-003] Event delegation on formContainer for input events clears validation errors in real-time

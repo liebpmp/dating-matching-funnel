@@ -41,6 +41,24 @@
       "answer": "After goToScreen sets the target screen to active, the browser needs a frame to apply the CSS transition. Using requestAnimationFrame ensures the focus call happens after the screen is visible, avoiding focus on hidden elements.",
       "story_id": "US-002",
       "timestamp": "2026-03-10 01:14"
+    },
+    {
+      "question": "Why use inline SVG icons instead of an icon font or external images?",
+      "answer": "Inline SVGs have zero external dependencies (matching the project constraint), are stylable via CSS currentColor for seamless color transitions on hover/selection, and render crisply at any size. They follow the existing pattern of inline SVGs used for button arrows.",
+      "story_id": "US-003",
+      "timestamp": "2026-03-10 01:19"
+    },
+    {
+      "question": "Why use delegated input events for clearing validation errors?",
+      "answer": "A single 'input' event listener on formContainer handles all fields via event delegation. This avoids attaching individual listeners to each textarea/input and automatically works for any future fields added to the form.",
+      "story_id": "US-003",
+      "timestamp": "2026-03-10 01:19"
+    },
+    {
+      "question": "Why use max-height transition for error messages instead of display:none?",
+      "answer": "display:none cannot be animated. Using opacity + max-height creates a smooth reveal/hide animation for validation error messages, matching the premium feel of the rest of the UI. The max-height: 2em is enough for a single-line error.",
+      "story_id": "US-003",
+      "timestamp": "2026-03-10 01:19"
     }
   ]
 }
