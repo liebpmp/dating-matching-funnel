@@ -1,0 +1,104 @@
+{
+  "project": "dating-matching-funnel",
+  "branchName": "ralph/landing-page",
+  "description": "Premium Heyflow-style landing page with multi-step questionnaire for reverse-Tinder dating matching funnel. 8 screens, photo upload, dark premium design, mobile-first.",
+  "userStories": [
+    {
+      "id": "US-001",
+      "title": "Project scaffold + Welcome Screen",
+      "description": "Create index.html, styles.css, app.js. Dark premium theme (bg #0a0a0a, gold #c9a96e, white text). Google Fonts Inter. Welcome screen with headline, subtext, CTA. Progress bar at top. Mobile-first.",
+      "acceptanceCriteria": [
+        "index.html loads with welcome screen",
+        "Dark premium theme applied",
+        "CTA navigates to first question",
+        "Progress bar visible at 0%",
+        "Mobile responsive 375px"
+      ],
+      "priority": 1,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-002",
+      "title": "Multi-step form engine + transitions",
+      "description": "JS form engine: one-question-per-screen, smooth CSS slide transitions, forward/back nav, progress bar updates, answers stored in JS state. 8 total steps.",
+      "acceptanceCriteria": [
+        "Smooth slide transitions 60fps",
+        "Back button on all screens",
+        "Progress bar updates correctly",
+        "Keyboard Enter to proceed"
+      ],
+      "priority": 2,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-003",
+      "title": "Choice cards + freetext screens",
+      "description": "Screen 2: personality 4 choice cards with icons, auto-advance on select. Screen 3+4: freetext inputs with placeholders. Validation.",
+      "acceptanceCriteria": [
+        "4 choice cards with hover+selection state",
+        "Card selection auto-advances",
+        "Freetext inputs validated"
+      ],
+      "priority": 3,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-004",
+      "title": "Slider + intent screens",
+      "description": "Screen 5: adventure vs planned visual choice. Screen 6: 3 choice cards for relationship intent.",
+      "acceptanceCriteria": [
+        "Choice/slider works on mobile touch",
+        "Visual feedback on selection",
+        "Intent cards with selection state"
+      ],
+      "priority": 4,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-005",
+      "title": "Photo upload screen",
+      "description": "Drag-drop + click upload, client-side preview, 5MB max, mobile camera picker, remove option. Premium styled upload area.",
+      "acceptanceCriteria": [
+        "Upload via click and drag-drop",
+        "Image preview after selection",
+        "File size validation 5MB",
+        "Mobile camera picker"
+      ],
+      "priority": 5,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-006",
+      "title": "Contact + GDPR + Submit + Thank You",
+      "description": "WhatsApp+IG inputs, GDPR checkbox, submit collects JSON, thank-you screen.",
+      "acceptanceCriteria": [
+        "WhatsApp input with country code",
+        "GDPR checkbox blocks submit",
+        "Submit collects all data as JSON",
+        "Thank-you screen after submit"
+      ],
+      "priority": 6,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-007",
+      "title": "Polish + animations + final QA",
+      "description": "Background effects, micro-animations, loading state, cross-browser, responsive polish, wow-factor on welcome.",
+      "acceptanceCriteria": [
+        "Welcome screen premium visual effect",
+        "Button micro-animations",
+        "Full flow works end-to-end",
+        "Works on Chrome+Safari mobile"
+      ],
+      "priority": 7,
+      "passes": false,
+      "notes": ""
+    }
+  ]
+}
