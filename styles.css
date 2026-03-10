@@ -1,0 +1,295 @@
+/* ============================================
+   Dating Matching Funnel — Premium Dark Theme
+   Design Tokens from CLAUDE.md
+   ============================================ */
+
+:root {
+  /* Colors */
+  --color-bg: #0a0a0a;
+  --color-surface: #141414;
+  --color-surface-hover: #1a1a1a;
+  --color-gold: #c9a96e;
+  --color-gold-light: #d4b97e;
+  --color-gold-dark: #b08f55;
+  --color-white: #ffffff;
+  --color-text: #e8e8e8;
+  --color-text-muted: #888888;
+  --color-border: #2a2a2a;
+
+  /* Typography */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 300ms ease;
+  --transition-slow: 500ms ease;
+
+  /* Layout */
+  --max-width: 480px;
+  --progress-height: 3px;
+}
+
+/* ============================================
+   Reset & Base
+   ============================================ */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+/* ============================================
+   Progress Bar
+   ============================================ */
+
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--progress-height);
+  background-color: var(--color-border);
+  z-index: 100;
+}
+
+.progress-bar__fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--color-gold-dark), var(--color-gold), var(--color-gold-light));
+  transition: width var(--transition-base);
+  will-change: width;
+}
+
+/* ============================================
+   Form Container & Screens
+   ============================================ */
+
+.form-container {
+  position: relative;
+  width: 100%;
+  min-height: 100dvh;
+  overflow: hidden;
+}
+
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-lg);
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.screen--active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+  position: relative;
+}
+
+.screen--exit-left {
+  opacity: 0;
+  transform: translateX(-100%);
+  pointer-events: none;
+}
+
+.screen__content {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+/* ============================================
+   Welcome Screen
+   ============================================ */
+
+.welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--spacing-3xl) 0;
+}
+
+.welcome__badge {
+  display: inline-block;
+  padding: var(--spacing-xs) var(--spacing-md);
+  border: 1px solid var(--color-gold);
+  border-radius: var(--radius-full);
+  color: var(--color-gold);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-xl);
+}
+
+.welcome__headline {
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--color-white);
+  margin-bottom: var(--spacing-md);
+  letter-spacing: -0.02em;
+}
+
+.text-gold {
+  color: var(--color-gold);
+}
+
+.welcome__subtext {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-2xl);
+  max-width: 360px;
+}
+
+.welcome__note {
+  margin-top: var(--spacing-md);
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+}
+
+/* ============================================
+   Buttons
+   ============================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-weight: 600;
+  transition: background-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+.btn--primary {
+  background-color: var(--color-gold);
+  color: var(--color-bg);
+  font-size: 1rem;
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: var(--radius-full);
+  min-width: 200px;
+}
+
+.btn--primary:hover {
+  background-color: var(--color-gold-light);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(201, 169, 110, 0.3);
+}
+
+.btn--primary:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.btn__arrow {
+  transition: transform var(--transition-fast);
+}
+
+.btn--primary:hover .btn__arrow {
+  transform: translateX(3px);
+}
+
+/* ============================================
+   Screen Placeholder (for future screens)
+   ============================================ */
+
+.screen__title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-white);
+  margin-bottom: var(--spacing-lg);
+}
+
+.screen__placeholder {
+  color: var(--color-text-muted);
+  font-size: 1rem;
+}
+
+/* ============================================
+   Responsive — Mobile First (375px base)
+   ============================================ */
+
+/* Small phones (< 375px) */
+@media (max-width: 374px) {
+  .welcome__headline {
+    font-size: 1.875rem;
+  }
+
+  .welcome__subtext {
+    font-size: 0.9375rem;
+  }
+}
+
+/* Larger phones (430px+) */
+@media (min-width: 430px) {
+  .welcome__headline {
+    font-size: 2.5rem;
+  }
+}
+
+/* Tablets and up */
+@media (min-width: 768px) {
+  .welcome__headline {
+    font-size: 3rem;
+  }
+
+  .welcome__subtext {
+    font-size: 1.125rem;
+  }
+
+  .btn--primary {
+    font-size: 1.0625rem;
+    padding: var(--spacing-md) var(--spacing-2xl);
+  }
+}

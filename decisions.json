@@ -1,0 +1,22 @@
+{
+  "decisions": [
+    {
+      "question": "Why use CSS custom properties (variables) for the design system?",
+      "answer": "CSS variables centralize all design tokens (colors, spacing, radii, transitions) for consistency across future screens. Makes it easy for subsequent stories to reuse the same tokens without hardcoding values.",
+      "story_id": "US-001",
+      "timestamp": "2026-03-10 01:11"
+    },
+    {
+      "question": "Why use an IIFE in app.js instead of ES modules?",
+      "answer": "The project uses vanilla JS without a bundler. An IIFE avoids polluting the global scope while keeping compatibility simple. No need for module syntax since there's only one JS file.",
+      "story_id": "US-001",
+      "timestamp": "2026-03-10 01:11"
+    },
+    {
+      "question": "Why include a placeholder screen-1 in index.html already?",
+      "answer": "The CTA on the welcome screen navigates to screen 1. Including a minimal placeholder ensures the navigation works correctly for US-001 verification, and US-002 will flesh it out with the full form engine.",
+      "story_id": "US-001",
+      "timestamp": "2026-03-10 01:11"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+# Codebase Patterns
+
+- **CSS:** All design tokens in :root variables (--color-*, --spacing-*, --radius-*, --transition-*)
+- **JS:** IIFE pattern, strict mode, state object for form data
+- **HTML:** Semantic sections with .screen class, data-screen attribute, aria-label
+- **Naming:** BEM-style CSS (block__element--modifier)
+- **Screens:** Each screen is a <section class="screen"> with data-screen="N"
+- **Navigation:** goToScreen(index) handles transitions + progress bar updates
+- **Progress:** Calculated as (currentScreen / TOTAL_STEPS) * 100
+
+---
+
+## 2026-03-10 01:11 - US-001
+- Implemented: Project scaffold with index.html, styles.css, app.js. Dark premium theme (#0a0a0a bg, #c9a96e gold, white text). Google Fonts Inter. Welcome screen with badge, headline, subtext, CTA button. Fixed progress bar at top (0% on welcome). Mobile-first responsive design with breakpoints at 374px, 430px, 768px. Screen transition system ready for multi-step flow.
+- Files: index.html, styles.css, app.js
+- Learnings:
+  - Used 100dvh instead of 100vh for better mobile viewport handling
+  - Progress bar uses will-change:width for GPU-accelerated transitions
+  - Screen transitions use transform+opacity for 60fps performance (will-change hints added)
+  - Included a placeholder screen-1 so CTA navigation can be verified immediately

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Your Match — Premium Dating</title>
+  <meta name="description" content="Premium matching service for ambitious singles. Apply now and find your perfect match.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Progress Bar -->
+  <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Questionnaire progress">
+    <div class="progress-bar__fill" id="progressFill"></div>
+  </div>
+
+  <!-- Form Container -->
+  <main class="form-container" id="formContainer">
+
+    <!-- Screen 0: Welcome -->
+    <section class="screen screen--active" id="screen-0" data-screen="0" aria-label="Welcome">
+      <div class="screen__content welcome">
+        <div class="welcome__badge">Exclusive Matching</div>
+        <h1 class="welcome__headline">Find Your <span class="text-gold">Perfect Match</span></h1>
+        <p class="welcome__subtext">A premium matching service for ambitious singles. Answer a few questions and let us find someone who truly fits your vibe.</p>
+        <button class="btn btn--primary" id="ctaStart" type="button" aria-label="Start the questionnaire">
+          Get Started
+          <svg class="btn__arrow" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <p class="welcome__note">Takes only 2 minutes</p>
+      </div>
+    </section>
+
+    <!-- Screen 1: Personality (placeholder for US-002+) -->
+    <section class="screen" id="screen-1" data-screen="1" aria-label="Personality question">
+      <div class="screen__content">
+        <h2 class="screen__title">What describes you best?</h2>
+        <p class="screen__placeholder">Coming soon...</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
