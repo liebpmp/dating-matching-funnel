@@ -69,3 +69,11 @@ Nach Submit: Thank-You Screen mit "Wir melden uns innerhalb von 48h"
 - [US-003] Freetext validation uses required attribute + validateCurrentScreen() before goForward()
 - [US-003] Validation errors animate with opacity + max-height (display:none can't be transitioned)
 - [US-003] Event delegation on formContainer for input events clears validation errors in real-time
+- [US-003] Inline SVGs styled via currentColor inherit color transitions from parent for seamless hover/selection effects
+- [US-003] Event delegation on formContainer for input events is cleaner than per-field listeners for clearing validation errors
+- [US-003] max-height + opacity animation is a reliable pattern for revealing/hiding error messages since display:none can't be transitioned
+- [US-003] Choice cards with icon+label layout use flex with gap for consistent alignment across cards with/without icons
+- [US-004] Visual choice cards use --visual modifier with flex-direction:column + centered layout for "this or that" binary choices
+- [US-004] Side-by-side card layout (screen__choices--visual) uses flex-direction:row with flex:1 on each card for equal sizing
+- [US-004] Hint text (.choice-card__hint) provides additional context below labels, transitions to gold-light on selection
+- [US-004] No JS changes needed for new card variants — existing querySelectorAll('.screen__choices') handles all choice screens

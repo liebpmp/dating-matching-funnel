@@ -41,3 +41,14 @@
   - Event delegation on formContainer for input events is cleaner than per-field listeners for clearing validation errors
   - max-height + opacity animation is a reliable pattern for revealing/hiding error messages since display:none can't be transitioned
   - Choice cards with icon+label layout use flex with gap for consistent alignment across cards with/without icons
+
+---
+
+## 2026-03-10 01:23 - US-004
+- Implemented: Enhanced Screen 4 (lifestyle) with side-by-side visual choice cards (globe icon for adventure, calendar icon for planned) featuring larger icons, hint text, and flex row layout. Enhanced Screen 5 (intent) with inline SVG icons — heart for serious, coffee cup for casual, star for open. Added CSS for visual choice variant (--visual modifier), hint text styling with gold transition on selection, responsive sizing for small phones.
+- Files: index.html, styles.css
+- Learnings:
+  - Side-by-side visual cards (flex-direction: row) work better than a range slider for binary choices — clearer tap targets on mobile, consistent cross-browser
+  - choice-card--visual modifier with flex-direction:column + centered text creates a distinct "this or that" visual while reusing all existing JS (auto-advance, selection restore)
+  - Hint text below labels uses a separate .choice-card__hint span for additional context without affecting the card's primary label
+  - No JS changes needed — existing querySelectorAll('.screen__choices') and data-value patterns handle new card variants automatically

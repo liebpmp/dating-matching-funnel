@@ -55,7 +55,7 @@
         "Intent cards with selection state"
       ],
       "priority": 4,
-      "passes": false,
+      "passes": true,
       "notes": ""
     },
     {

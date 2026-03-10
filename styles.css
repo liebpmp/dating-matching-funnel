@@ -362,6 +362,41 @@ body {
   flex: 1;
 }
 
+.choice-card__hint {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+}
+
+.choice-card--selected .choice-card__hint {
+  color: var(--color-gold-light);
+}
+
+/* ---- Visual Choice (Screen 4: "this or that") ---- */
+
+.screen__choices--visual {
+  flex-direction: row;
+  gap: var(--spacing-md);
+}
+
+.choice-card--visual {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--spacing-xl) var(--spacing-md);
+  gap: var(--spacing-md);
+  flex: 1;
+  min-height: 180px;
+  justify-content: center;
+}
+
+.choice-card__icon--lg {
+  width: 40px;
+  height: 40px;
+}
+
 /* ============================================
    Input Fields
    ============================================ */
@@ -583,6 +618,16 @@ body {
 
   .welcome__subtext {
     font-size: 0.9375rem;
+  }
+
+  .choice-card--visual {
+    padding: var(--spacing-lg) var(--spacing-sm);
+    min-height: 150px;
+  }
+
+  .choice-card__icon--lg {
+    width: 32px;
+    height: 32px;
   }
 }
 

@@ -59,6 +59,18 @@
       "answer": "display:none cannot be animated. Using opacity + max-height creates a smooth reveal/hide animation for validation error messages, matching the premium feel of the rest of the UI. The max-height: 2em is enough for a single-line error.",
       "story_id": "US-003",
       "timestamp": "2026-03-10 01:19"
+    },
+    {
+      "question": "Why use side-by-side visual choice cards instead of a range slider for screen 4?",
+      "answer": "A range slider (input[type=range]) is hard to style consistently across browsers, has poor touch accessibility, and doesn't map well to a binary choice. Two large visual cards side-by-side give clear tap targets on mobile, immediate visual feedback via the existing choice-card--selected state, and match the premium Heyflow-style aesthetic. They also reuse the existing auto-advance JS pattern.",
+      "story_id": "US-004",
+      "timestamp": "2026-03-10 01:23"
+    },
+    {
+      "question": "Why add hint text below the label on visual choice cards?",
+      "answer": "The two visual choices (Spontaneous Adventure vs Planned Evening) benefit from a short descriptor to help users decide. The hint text uses --color-text-muted and transitions to --color-gold-light on selection, maintaining the premium feel without cluttering the card.",
+      "story_id": "US-004",
+      "timestamp": "2026-03-10 01:23"
     }
   ]
 }
