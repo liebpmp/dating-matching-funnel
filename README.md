@@ -34,6 +34,20 @@ app.js       — Screen navigation, progress bar, form state management (IIFE, v
 
 Each questionnaire step is a `<section class="screen">` element. Navigation is handled by `goToScreen(index)` in app.js, which manages CSS transform transitions and progress bar updates.
 
+| Screen | Type | Content |
+|--------|------|---------|
+| 0 | Welcome | Headline + CTA |
+| 1 | Choice cards | Personality type (4 options, auto-advance) |
+| 2 | Freetext | Profession / passion |
+| 3 | Freetext | What you talk about |
+| 4 | Choice cards | Spontaneous vs Planned (2 options) |
+| 5 | Choice cards | Relationship intent (3 options) |
+| 6 | Photo upload | File input with preview |
+| 7 | Contact | WhatsApp + IG + GDPR + submit |
+| 8 | Thank you | Confirmation message |
+
+**Navigation:** Forward via CTA/choice/continue buttons or Enter key. Back button on all question screens (1-7). Progress bar shows 0-100% across screens 1-7.
+
 ## Tech Stack
 
 - Vanilla HTML5, CSS3, JavaScript (no frameworks)
