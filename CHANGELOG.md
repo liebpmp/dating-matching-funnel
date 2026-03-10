@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-03-10] US-006 — Contact + GDPR + Submit + Thank You
+- Enhanced contact screen with country code select dropdown (15 countries) + phone number input group, and @ prefix for Instagram handle
+- Added WhatsApp validation (required), submit collects all form data as JSON, GDPR checkbox gates submit button
+- Polished thank-you screen with inline SVG checkmark icon and WhatsApp contact hint
+
 ## [2026-03-10] US-005 — Photo upload screen
 - Enhanced upload area with premium drag-drop zone, camera icon, file type/size hints, and animated drag-over state
 - Added 5MB file size validation with animated error message, and drag-and-drop support alongside click-to-upload

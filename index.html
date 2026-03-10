@@ -249,8 +249,33 @@
         <h2 class="screen__title">How can we reach you?</h2>
         <p class="screen__subtitle">We'll get back to you within 48 hours.</p>
         <div class="screen__input-wrap">
-          <input class="input-field" type="tel" data-field="whatsapp" placeholder="WhatsApp number" aria-label="WhatsApp number">
-          <input class="input-field" type="text" data-field="instagram" placeholder="Instagram handle" aria-label="Instagram handle">
+          <label class="input-label" for="countryCode">WhatsApp</label>
+          <div class="input-group">
+            <select class="input-field input-field--select" id="countryCode" data-field="countryCode" aria-label="Country code">
+              <option value="+49">🇩🇪 +49</option>
+              <option value="+43">🇦🇹 +43</option>
+              <option value="+41">🇨🇭 +41</option>
+              <option value="+357">🇨🇾 +357</option>
+              <option value="+1">🇺🇸 +1</option>
+              <option value="+44">🇬🇧 +44</option>
+              <option value="+33">🇫🇷 +33</option>
+              <option value="+34">🇪🇸 +34</option>
+              <option value="+39">🇮🇹 +39</option>
+              <option value="+31">🇳🇱 +31</option>
+              <option value="+90">🇹🇷 +90</option>
+              <option value="+30">🇬🇷 +30</option>
+              <option value="+46">🇸🇪 +46</option>
+              <option value="+48">🇵🇱 +48</option>
+              <option value="+351">🇵🇹 +351</option>
+            </select>
+            <input class="input-field input-field--phone" type="tel" id="whatsappNumber" data-field="whatsapp" placeholder="Your number" aria-label="WhatsApp number" required>
+          </div>
+          <p class="input-error" aria-live="polite">Please enter your WhatsApp number.</p>
+          <label class="input-label" for="instagramHandle">Instagram</label>
+          <div class="input-group input-group--prefix">
+            <span class="input-group__prefix" aria-hidden="true">@</span>
+            <input class="input-field input-field--with-prefix" type="text" id="instagramHandle" data-field="instagram" placeholder="your.handle" aria-label="Instagram handle">
+          </div>
         </div>
         <label class="checkbox-wrap" for="gdprCheckbox">
           <input type="checkbox" id="gdprCheckbox" data-field="gdpr">
@@ -258,6 +283,9 @@
         </label>
         <button class="btn btn--primary btn-submit" type="button" id="submitBtn" disabled>
           Submit Application
+          <svg class="btn__arrow" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </button>
       </div>
     </section>
@@ -266,9 +294,14 @@
     <section class="screen" id="screen-8" data-screen="8" aria-label="Thank you">
       <div class="screen__content screen__content--center">
         <div class="thankyou">
-          <div class="thankyou__icon">&#10003;</div>
+          <div class="thankyou__icon" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+              <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
           <h2 class="screen__title">You're In!</h2>
           <p class="thankyou__text">Thanks for applying. We'll review your profile and get back to you within <strong class="text-gold">48 hours</strong>.</p>
+          <p class="thankyou__hint">Keep an eye on your WhatsApp — that's how we'll reach out.</p>
         </div>
       </div>
     </section>

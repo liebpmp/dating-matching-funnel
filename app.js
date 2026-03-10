@@ -167,7 +167,12 @@
   formContainer.addEventListener('input', function (e) {
     if (e.target.classList.contains('input-field--error')) {
       e.target.classList.remove('input-field--error');
-      var errorEl = e.target.parentElement.querySelector('.input-error');
+      // Look for error element in parent, then grandparent (for nested input-group layouts)
+      var parent = e.target.parentElement;
+      var errorEl = parent.querySelector('.input-error');
+      if (!errorEl && parent.parentElement) {
+        errorEl = parent.parentElement.querySelector('.input-error');
+      }
       if (errorEl) errorEl.classList.remove('input-error--visible');
     }
   });
@@ -188,7 +193,7 @@
     var currentEl = screens[state.currentScreen];
     var inputs = currentEl.querySelectorAll('[data-field]');
     inputs.forEach(function (input) {
-      if (input.tagName === 'INPUT' || input.tagName === 'TEXTAREA') {
+      if (input.tagName === 'INPUT' || input.tagName === 'TEXTAREA' || input.tagName === 'SELECT') {
         saveAnswer(input.getAttribute('data-field'), input.value);
       }
     });
@@ -290,6 +295,26 @@
     });
   }
 
+  // ---- Contact Validation (Screen 7) ----
+
+  function validateContactScreen() {
+    var screen7 = document.getElementById('screen-7');
+    var whatsappInput = screen7.querySelector('[data-field="whatsapp"]');
+    var errorEl = screen7.querySelector('.input-error');
+    var valid = true;
+
+    if (!whatsappInput.value.trim()) {
+      whatsappInput.classList.add('input-field--error');
+      if (errorEl) errorEl.classList.add('input-error--visible');
+      valid = false;
+    } else {
+      whatsappInput.classList.remove('input-field--error');
+      if (errorEl) errorEl.classList.remove('input-error--visible');
+    }
+
+    return valid;
+  }
+
   // ---- GDPR Checkbox + Submit ----
 
   var gdprCheckbox = document.getElementById('gdprCheckbox');
@@ -302,9 +327,20 @@
 
     submitBtn.addEventListener('click', function () {
       if (!gdprCheckbox.checked) return;
+      if (!validateContactScreen()) return;
 
       // Save contact fields
-      saveCurrentScreenInputs();
+      var countryCodeEl = document.getElementById('countryCode');
+      var whatsappEl = document.getElementById('whatsappNumber');
+      var instagramEl = document.getElementById('instagramHandle');
+
+      var countryCode = countryCodeEl ? countryCodeEl.value : '+49';
+      var phone = whatsappEl ? whatsappEl.value.trim() : '';
+      var instagram = instagramEl ? instagramEl.value.trim() : '';
+
+      saveAnswer('whatsapp', countryCode + ' ' + phone);
+      saveAnswer('countryCode', countryCode);
+      if (instagram) saveAnswer('instagram', instagram);
       saveAnswer('gdpr', true);
 
       // Log collected data
@@ -387,6 +423,28 @@
         previewImg.src = state._photoDataUrl;
         uploadArea.hidden = true;
         uploadPreview.hidden = false;
+      }
+
+      // Restore contact inputs on screen 7
+      if (screen.getAttribute('data-screen') === '7') {
+        var countryCodeEl = screen.querySelector('[data-field="countryCode"]');
+        var whatsappEl = screen.querySelector('[data-field="whatsapp"]');
+        var instagramEl = screen.querySelector('[data-field="instagram"]');
+        if (countryCodeEl && state.answers.countryCode) {
+          countryCodeEl.value = state.answers.countryCode;
+        }
+        if (whatsappEl && state.answers.whatsapp) {
+          // Extract just the number (remove country code prefix)
+          var phone = state.answers.whatsapp;
+          var code = state.answers.countryCode || '+49';
+          if (phone.indexOf(code) === 0) {
+            phone = phone.substring(code.length).trim();
+          }
+          whatsappEl.value = phone;
+        }
+        if (instagramEl && state.answers.instagram) {
+          instagramEl.value = state.answers.instagram;
+        }
       }
     });
   });

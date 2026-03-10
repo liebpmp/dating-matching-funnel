@@ -64,3 +64,16 @@
   - role="button" + tabindex="0" on a div makes it keyboard-accessible while supporting drag-drop layout
   - upload__error uses same opacity + max-height pattern as input-error for consistent animated reveal
   - Remove button hover turns red (#e74c3c) instead of white for clearer destructive action intent
+
+---
+
+## 2026-03-10 01:31 - US-006
+- Implemented: Enhanced contact screen (screen 7) with country code select dropdown (15 countries, defaults to DE +49) + phone number input group. Added @ prefix for Instagram handle input. WhatsApp number is required with validation; Instagram is optional. Submit button validates WhatsApp, combines country code + number into single whatsapp answer, collects all form data as JSON and logs to console. GDPR checkbox continues to gate submit button. Enhanced thank-you screen (screen 8) with inline SVG checkmark icon and WhatsApp hint text. MutationObserver restores contact inputs on back-navigation. Error clearing works for nested input-group layouts.
+- Files: index.html, styles.css, app.js
+- Learnings:
+  - Country code select with flag emojis provides better mobile UX than a text input for international phone numbers
+  - Input-group pattern (select + input side-by-side with joined borders) creates a cohesive phone number input
+  - @ prefix using input-group__prefix span with border-radius adjustments integrates cleanly with the input field
+  - validateContactScreen() is separate from validateCurrentScreen() because submit doesn't go through btn-next flow
+  - Error clearing via event delegation needs to check grandparent for nested input-group layouts
+  - SELECT elements need to be included in saveCurrentScreenInputs() alongside INPUT and TEXTAREA

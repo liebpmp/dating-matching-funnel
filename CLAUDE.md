@@ -86,3 +86,8 @@ Nach Submit: Thank-You Screen mit "Wir melden uns innerhalb von 48h"
 - [US-005] Upload area uses role="button" + tabindex="0" for keyboard accessibility while supporting drag-drop layout
 - [US-005] Upload error uses same opacity + max-height pattern as input-error for consistent animated reveal/hide
 - [US-005] Drag-over state uses solid border + gold tint background to visually distinguish from hover
+- [US-005] Centralized handlePhotoFile() for both click and drag-drop avoids duplicated validation/preview logic
+- [US-005] Storing photo data URL on state._photoDataUrl enables preview restore when navigating back to screen 6
+- [US-005] role="button" + tabindex="0" on a div makes it keyboard-accessible while supporting drag-drop layout
+- [US-005] upload__error uses same opacity + max-height pattern as input-error for consistent animated reveal
+- [US-005] Remove button hover turns red (#e74c3c) instead of white for clearer destructive action intent

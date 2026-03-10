@@ -89,6 +89,30 @@
       "answer": "The upload area is a div that acts as a click/drag target. Adding role='button' + tabindex='0' makes it keyboard-accessible and announces correctly to screen readers. A native button wouldn't support drag-drop or the visual layout needed for the drop zone.",
       "story_id": "US-005",
       "timestamp": "2026-03-10 01:27"
+    },
+    {
+      "question": "Why use a select dropdown for country code instead of a text prefix?",
+      "answer": "A select element provides a constrained set of valid country codes with flag emojis for quick visual identification. This is more user-friendly than typing a country code, especially on mobile where the select opens as a native picker. The dropdown defaults to +49 (Germany) since the service targets Cyprus/Mediterranean but has a DACH-region audience.",
+      "story_id": "US-006",
+      "timestamp": "2026-03-10 01:31"
+    },
+    {
+      "question": "Why use an @ prefix for the Instagram input instead of inline text?",
+      "answer": "A visual @ prefix (input-group__prefix) makes it immediately clear that the user should enter just their handle without the @ symbol. This uses the same input-group pattern as the phone number, keeping the layout consistent. The prefix is aria-hidden since it's decorative.",
+      "story_id": "US-006",
+      "timestamp": "2026-03-10 01:31"
+    },
+    {
+      "question": "Why validate WhatsApp as required but Instagram as optional?",
+      "answer": "WhatsApp is the primary contact channel (mentioned in the thank-you screen). Instagram is a secondary channel that not all users may have. Making WhatsApp required ensures the service can reach every applicant, while keeping Instagram optional reduces form friction.",
+      "story_id": "US-006",
+      "timestamp": "2026-03-10 01:31"
+    },
+    {
+      "question": "Why store whatsapp as 'countryCode + number' combined string?",
+      "answer": "The combined format (e.g. '+49 1234567890') is the most useful representation for the service to contact users via WhatsApp. The raw countryCode is also stored separately for potential back-navigation restoration, where the select and input need to be populated independently.",
+      "story_id": "US-006",
+      "timestamp": "2026-03-10 01:31"
     }
   ]
 }

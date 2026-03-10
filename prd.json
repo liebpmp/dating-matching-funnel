@@ -83,7 +83,7 @@
         "Thank-you screen after submit"
       ],
       "priority": 6,
-      "passes": false,
+      "passes": true,
       "notes": ""
     },
     {
