@@ -104,33 +104,16 @@ body {
 }
 
 .screen {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   min-height: 100dvh;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   padding: var(--spacing-lg);
-  opacity: 0;
-  transform: translateX(100%);
-  transition: opacity var(--transition-slow), transform var(--transition-slow);
-  pointer-events: none;
-  will-change: transform, opacity;
 }
 
 .screen--active {
-  opacity: 1;
-  transform: translateX(0);
-  pointer-events: auto;
-  position: relative;
-}
-
-.screen--exit-left {
-  opacity: 0;
-  transform: translateX(-100%);
-  pointer-events: none;
+  display: flex;
 }
 
 .screen__content {
