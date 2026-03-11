@@ -2,256 +2,252 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Find Your Match — Premium Dating</title>
-  <meta name="description" content="Premium matching service for ambitious singles. Apply now and find your perfect match.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=3">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; overflow: hidden; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #0a0a0a;
+      color: #e8e8e8;
+      -webkit-font-smoothing: antialiased;
+    }
+    .app { height: 100dvh; display: flex; flex-direction: column; }
+    .progress { height: 3px; background: #2a2a2a; flex-shrink: 0; }
+    .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #b08f55, #c9a96e, #d4b97e); transition: width 0.3s ease; }
+    .screens { flex: 1; position: relative; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+    .screen { display: none; padding: 24px; min-height: 100%; }
+    .screen.active { display: flex; flex-direction: column; justify-content: center; align-items: center; }
+    .screen-inner { width: 100%; max-width: 480px; }
+    .text-gold { color: #c9a96e; }
+
+    /* Welcome */
+    .welcome { text-align: center; }
+    .badge { display: inline-block; padding: 4px 16px; border: 1px solid #c9a96e; border-radius: 9999px; color: #c9a96e; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 24px; }
+    h1 { font-size: 2.25rem; font-weight: 700; line-height: 1.15; margin-bottom: 16px; }
+    .subtitle { color: #888; font-size: 1rem; line-height: 1.6; margin-bottom: 32px; }
+    .note { color: #666; font-size: 0.8rem; margin-top: 16px; }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 14px 32px; border: none; border-radius: 12px; cursor: pointer;
+      font-family: inherit; font-size: 1rem; font-weight: 600;
+      touch-action: manipulation; -webkit-tap-highlight-color: rgba(201,169,110,0.2);
+    }
+    .btn-primary { background: #c9a96e; color: #0a0a0a; width: 100%; }
+    .btn-primary:active { background: #b08f55; }
+    .btn-back {
+      background: none; border: none; color: #888; font-family: inherit;
+      font-size: 0.9rem; cursor: pointer; padding: 8px 0; margin-bottom: 24px;
+      touch-action: manipulation; -webkit-tap-highlight-color: rgba(255,255,255,0.1);
+    }
+
+    /* Screen titles */
+    h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; }
+    .screen-subtitle { color: #888; font-size: 0.95rem; margin-bottom: 24px; }
+
+    /* Choice Cards */
+    .choices { display: flex; flex-direction: column; gap: 12px; width: 100%; }
+    .choice {
+      display: flex; align-items: center; gap: 16px;
+      width: 100%; padding: 16px 20px;
+      background: #141414; border: 1px solid #2a2a2a; border-radius: 12px;
+      color: #e8e8e8; font-family: inherit; font-size: 1rem; font-weight: 500;
+      text-align: left; cursor: pointer;
+      touch-action: manipulation; -webkit-tap-highlight-color: rgba(201,169,110,0.2);
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .choice:active, .choice.selected { border-color: #c9a96e; background: rgba(201,169,110,0.1); color: #c9a96e; }
+    .choice-icon { font-size: 1.3rem; flex-shrink: 0; }
+
+    /* Visual choices (2-col) */
+    .choices-visual { flex-direction: row; gap: 12px; }
+    .choices-visual .choice { flex-direction: column; align-items: center; text-align: center; padding: 24px 16px; flex: 1; min-height: 160px; justify-content: center; }
+    .choices-visual .choice-icon { font-size: 2rem; margin-bottom: 8px; }
+    .choice-hint { color: #888; font-size: 0.8rem; margin-top: 4px; }
+
+    /* Text inputs */
+    .input-wrap { width: 100%; margin-bottom: 24px; }
+    textarea, input[type="tel"], input[type="text"] {
+      width: 100%; padding: 14px 16px;
+      background: #141414; border: 1px solid #2a2a2a; border-radius: 12px;
+      color: #e8e8e8; font-family: inherit; font-size: 1rem;
+      resize: none; outline: none;
+      touch-action: manipulation;
+    }
+    textarea:focus, input:focus { border-color: #c9a96e; }
+    textarea { min-height: 100px; }
+    .input-label { display: block; color: #888; font-size: 0.85rem; font-weight: 500; margin-bottom: 8px; }
+    .input-error { color: #e74c3c; font-size: 0.8rem; margin-top: 6px; display: none; }
+    .input-error.show { display: block; }
+
+    /* Upload */
+    .upload-area {
+      width: 100%; padding: 48px 24px;
+      border: 2px dashed #2a2a2a; border-radius: 16px;
+      text-align: center; cursor: pointer;
+      touch-action: manipulation; margin-bottom: 24px;
+      transition: border-color 0.15s;
+    }
+    .upload-area:active { border-color: #c9a96e; }
+    .upload-icon { font-size: 2.5rem; margin-bottom: 12px; }
+    .upload-text { color: #888; font-size: 0.95rem; }
+    .upload-hint { color: #555; font-size: 0.8rem; margin-top: 4px; }
+    .preview { display: none; text-align: center; margin-bottom: 24px; }
+    .preview img { max-width: 200px; max-height: 200px; border-radius: 12px; object-fit: cover; }
+    .preview .remove { background: none; border: 1px solid #555; border-radius: 8px; color: #888; padding: 6px 16px; margin-top: 12px; cursor: pointer; font-family: inherit; touch-action: manipulation; }
+
+    /* Contact */
+    .input-row { display: flex; gap: 8px; margin-bottom: 16px; }
+    .input-row select {
+      padding: 14px 8px; background: #141414; border: 1px solid #2a2a2a;
+      border-radius: 12px; color: #e8e8e8; font-family: inherit; font-size: 0.95rem;
+      flex-shrink: 0; width: 100px;
+    }
+    .input-row input { flex: 1; }
+    .ig-wrap { position: relative; margin-bottom: 24px; }
+    .ig-prefix { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: #888; font-size: 1rem; }
+    .ig-wrap input { padding-left: 36px; }
+
+    /* Checkbox */
+    .gdpr-label { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 24px; color: #888; font-size: 0.85rem; line-height: 1.5; cursor: pointer; touch-action: manipulation; }
+    .gdpr-label input { margin-top: 3px; accent-color: #c9a96e; width: 18px; height: 18px; flex-shrink: 0; }
+    .gdpr-label a { color: #c9a96e; }
+
+    /* Thank you */
+    .thankyou { text-align: center; }
+    .check-icon { width: 64px; height: 64px; border-radius: 50%; background: rgba(201,169,110,0.15); display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 1.8rem; }
+    .thankyou p { color: #888; font-size: 1rem; line-height: 1.6; margin-top: 12px; }
+    .thankyou strong { color: #c9a96e; }
+  </style>
 </head>
 <body>
-  <!-- Progress Bar -->
-  <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Questionnaire progress">
-    <div class="progress-bar__fill" id="progressFill"></div>
-  </div>
+<div class="app">
+  <div class="progress"><div class="progress-fill" id="pf"></div></div>
+  <div class="screens">
 
-  <!-- Form Container -->
-  <main class="form-container" id="formContainer">
-
-    <!-- Screen 0: Welcome -->
-    <section class="screen screen--active" id="screen-0" data-screen="0" aria-label="Welcome">
-      <div class="screen__content welcome">
-        <div class="welcome__badge">Exclusive Matching</div>
-        <h1 class="welcome__headline">Find Your <span class="text-gold">Perfect Match</span></h1>
-        <p class="welcome__subtext">A premium matching service for ambitious singles. Answer a few questions and let us find someone who truly fits your vibe.</p>
-        <button class="btn btn--primary" id="ctaStart" type="button" aria-label="Start the questionnaire">
-          Get Started
-          <svg class="btn__arrow" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-        <p class="welcome__note">Takes only 2 minutes</p>
+    <!-- 0: Welcome -->
+    <div class="screen active" data-s="0">
+      <div class="screen-inner welcome">
+        <div class="badge">Exclusive Matching</div>
+        <h1>Find Your <span class="text-gold">Perfect Match</span></h1>
+        <p class="subtitle">A premium matching service for ambitious singles. Answer a few questions and let us find someone who truly fits your vibe.</p>
+        <button class="btn btn-primary" onclick="go(1)">Get Started →</button>
+        <p class="note">Takes only 2 minutes</p>
       </div>
-    </section>
+    </div>
 
-    <!-- Screen 1: Personality -->
-    <section class="screen" id="screen-1" data-screen="1" aria-label="Personality question">
-      <div class="screen__content">
-        <button class="btn-back" type="button" aria-label="Go back">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M16 10H4m0 0l4-4m-4 4l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          Back
-        </button>
-        <h2 class="screen__title">What describes you best?</h2>
-        <p class="screen__subtitle">Pick the one that fits you most.</p>
-        <div class="screen__choices" data-field="personality">
-          <button class="choice-card" type="button" data-value="adventurer">
-            <svg class="choice-card__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 2L2 22h20L12 2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M12 16v.01M12 10v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-            <span class="choice-card__label">Adventurer</span>
+    <!-- 1: Personality -->
+    <div class="screen" data-s="1">
+      <div class="screen-inner">
+        <button class="btn-back" onclick="go(0)">← Back</button>
+        <h2>What describes you best?</h2>
+        <p class="screen-subtitle">Pick the one that fits you most.</p>
+        <div class="choices" data-field="personality">
+          <button class="choice" data-v="adventurer"><span class="choice-icon">⛰️</span> Adventurer</button>
+          <button class="choice" data-v="creative"><span class="choice-icon">💡</span> Creative Soul</button>
+          <button class="choice" data-v="powerwoman"><span class="choice-icon">⚡</span> Powerwoman</button>
+          <button class="choice" data-v="relaxed"><span class="choice-icon">😊</span> Relaxed Enjoyer</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2: Profession -->
+    <div class="screen" data-s="2">
+      <div class="screen-inner">
+        <button class="btn-back" onclick="go(1)">← Back</button>
+        <h2>What do you do — or what are you passionate about?</h2>
+        <p class="screen-subtitle">Tell us a little about yourself.</p>
+        <div class="input-wrap">
+          <textarea data-field="profession" placeholder="e.g. Marketing manager who loves yoga and travel..." rows="3"></textarea>
+          <p class="input-error">Please share a little about yourself.</p>
+        </div>
+        <button class="btn btn-primary" onclick="next(2)">Continue →</button>
+      </div>
+    </div>
+
+    <!-- 3: Talk about -->
+    <div class="screen" data-s="3">
+      <div class="screen-inner">
+        <button class="btn-back" onclick="go(2)">← Back</button>
+        <h2>What could you talk about for hours?</h2>
+        <p class="screen-subtitle">There are no wrong answers here.</p>
+        <div class="input-wrap">
+          <textarea data-field="talkAbout" placeholder="e.g. Travel stories, psychology, good food..." rows="3"></textarea>
+          <p class="input-error">Please tell us what you love talking about.</p>
+        </div>
+        <button class="btn btn-primary" onclick="next(3)">Continue →</button>
+      </div>
+    </div>
+
+    <!-- 4: Lifestyle -->
+    <div class="screen" data-s="4">
+      <div class="screen-inner">
+        <button class="btn-back" onclick="go(3)">← Back</button>
+        <h2>What's more important to you?</h2>
+        <p class="screen-subtitle">Choose the one that resonates.</p>
+        <div class="choices choices-visual" data-field="lifestyle">
+          <button class="choice" data-v="spontaneous">
+            <span class="choice-icon">🌍</span>
+            Spontaneous Adventure
+            <span class="choice-hint">Go with the flow, explore new places</span>
           </button>
-          <button class="choice-card" type="button" data-value="creative">
-            <svg class="choice-card__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 2a7 7 0 0 1 7 7c0 3-2 5.5-4 7l-1 4H10l-1-4c-2-1.5-4-4-4-7a7 7 0 0 1 7-7z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M10 20h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-            <span class="choice-card__label">Creative Soul</span>
-          </button>
-          <button class="choice-card" type="button" data-value="powerwoman">
-            <svg class="choice-card__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span class="choice-card__label">Powerwoman</span>
-          </button>
-          <button class="choice-card" type="button" data-value="relaxed">
-            <svg class="choice-card__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M8 14s1.5 2 4 2 4-2 4-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-              <path d="M9 9h.01M15 9h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-            <span class="choice-card__label">Relaxed Enjoyer</span>
+          <button class="choice" data-v="planned">
+            <span class="choice-icon">📅</span>
+            Planned Evening
+            <span class="choice-hint">Thoughtful reservations, curated vibes</span>
           </button>
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- Screen 2: Profession / Passion -->
-    <section class="screen" id="screen-2" data-screen="2" aria-label="Profession question">
-      <div class="screen__content">
-        <button class="btn-back" type="button" aria-label="Go back">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M16 10H4m0 0l4-4m-4 4l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          Back
-        </button>
-        <h2 class="screen__title">What do you do — or what are you passionate about?</h2>
-        <p class="screen__subtitle">Tell us a little about yourself.</p>
-        <div class="screen__input-wrap">
-          <textarea class="input-field input-field--textarea" data-field="profession" placeholder="e.g. Marketing manager who loves yoga and travel..." rows="3" aria-label="Your profession or passion" required></textarea>
-          <p class="input-error" aria-live="polite">Please share a little about yourself.</p>
-        </div>
-        <button class="btn btn--primary btn-next" type="button">
-          Continue
-          <svg class="btn__arrow" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-      </div>
-    </section>
-
-    <!-- Screen 3: Talk About -->
-    <section class="screen" id="screen-3" data-screen="3" aria-label="Conversation topic question">
-      <div class="screen__content">
-        <button class="btn-back" type="button" aria-label="Go back">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M16 10H4m0 0l4-4m-4 4l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          Back
-        </button>
-        <h2 class="screen__title">What could you talk about for hours?</h2>
-        <p class="screen__subtitle">There are no wrong answers here.</p>
-        <div class="screen__input-wrap">
-          <textarea class="input-field input-field--textarea" data-field="talkAbout" placeholder="e.g. Travel stories, psychology, good food..." rows="3" aria-label="What you love talking about" required></textarea>
-          <p class="input-error" aria-live="polite">Please tell us what you love talking about.</p>
-        </div>
-        <button class="btn btn--primary btn-next" type="button">
-          Continue
-          <svg class="btn__arrow" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-      </div>
-    </section>
-
-    <!-- Screen 4: Adventure vs Planned -->
-    <section class="screen" id="screen-4" data-screen="4" aria-label="Lifestyle preference">
-      <div class="screen__content">
-        <button class="btn-back" type="button" aria-label="Go back">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M16 10H4m0 0l4-4m-4 4l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          Back
-        </button>
-        <h2 class="screen__title">What's more important to you?</h2>
-        <p class="screen__subtitle">Choose the one that resonates.</p>
-        <div class="screen__choices screen__choices--visual" data-field="lifestyle">
-          <button class="choice-card choice-card--visual" type="button" data-value="spontaneous">
-            <svg class="choice-card__icon choice-card__icon--lg" width="40" height="40" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M2 12h20" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M5 5l2 2M17 5l-2 2M5 19l2-2M17 19l-2-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-            <span class="choice-card__label">Spontaneous Adventure</span>
-            <span class="choice-card__hint">Go with the flow, explore new places</span>
-          </button>
-          <button class="choice-card choice-card--visual" type="button" data-value="planned">
-            <svg class="choice-card__icon choice-card__icon--lg" width="40" height="40" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-              <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-            <span class="choice-card__label">Planned Evening</span>
-            <span class="choice-card__hint">Thoughtful reservations, curated vibes</span>
-          </button>
+    <!-- 5: Intent -->
+    <div class="screen" data-s="5">
+      <div class="screen-inner">
+        <button class="btn-back" onclick="go(4)">← Back</button>
+        <h2>What are you looking for?</h2>
+        <p class="screen-subtitle">Be honest — there's no wrong answer.</p>
+        <div class="choices" data-field="intent">
+          <button class="choice" data-v="serious"><span class="choice-icon">❤️</span> Serious Relationship</button>
+          <button class="choice" data-v="casual"><span class="choice-icon">☕</span> Getting to Know Someone</button>
+          <button class="choice" data-v="open"><span class="choice-icon">⭐</span> Open to Anything</button>
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- Screen 5: Relationship Intent -->
-    <section class="screen" id="screen-5" data-screen="5" aria-label="Relationship intent">
-      <div class="screen__content">
-        <button class="btn-back" type="button" aria-label="Go back">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M16 10H4m0 0l4-4m-4 4l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          Back
-        </button>
-        <h2 class="screen__title">What are you looking for?</h2>
-        <p class="screen__subtitle">Be honest — there's no wrong answer.</p>
-        <div class="screen__choices" data-field="intent">
-          <button class="choice-card" type="button" data-value="serious">
-            <svg class="choice-card__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span class="choice-card__label">Serious Relationship</span>
-          </button>
-          <button class="choice-card" type="button" data-value="casual">
-            <svg class="choice-card__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M17 8h2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M3 18V8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M7 12h4M9 10v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-            <span class="choice-card__label">Getting to Know Someone</span>
-          </button>
-          <button class="choice-card" type="button" data-value="open">
-            <svg class="choice-card__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 2L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span class="choice-card__label">Open to Anything</span>
-          </button>
+    <!-- 6: Photo -->
+    <div class="screen" data-s="6">
+      <div class="screen-inner">
+        <button class="btn-back" onclick="go(5)">← Back</button>
+        <h2>Show yourself!</h2>
+        <p class="screen-subtitle">Upload your best photo. First impressions matter.</p>
+        <div class="upload-area" id="uploadArea" onclick="document.getElementById('photoIn').click()">
+          <div class="upload-icon">📷</div>
+          <p class="upload-text">Tap to upload a photo</p>
+          <p class="upload-hint">JPG, PNG — max 5 MB</p>
         </div>
+        <input type="file" id="photoIn" accept="image/*" capture="user" style="display:none" onchange="handlePhoto(this)">
+        <div class="preview" id="preview">
+          <img id="previewImg" alt="Your photo">
+          <br><button class="remove" onclick="removePhoto()">✕ Remove</button>
+        </div>
+        <button class="btn btn-primary" onclick="next(6)">Continue →</button>
       </div>
-    </section>
+    </div>
 
-    <!-- Screen 6: Photo Upload -->
-    <section class="screen" id="screen-6" data-screen="6" aria-label="Photo upload">
-      <div class="screen__content">
-        <button class="btn-back" type="button" aria-label="Go back">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M16 10H4m0 0l4-4m-4 4l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          Back
-        </button>
-        <h2 class="screen__title">Show yourself!</h2>
-        <p class="screen__subtitle">Upload your best photo. First impressions matter.</p>
-        <div class="upload" id="uploadArea" role="button" tabindex="0" aria-label="Upload a photo — click or drag and drop">
-          <svg class="upload__icon" width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="12" cy="13" r="4" stroke="currentColor" stroke-width="1.5"/>
-          </svg>
-          <p class="upload__text">Tap or drag a photo here</p>
-          <p class="upload__hint">JPG, PNG — max 5 MB</p>
-          <input type="file" id="photoInput" accept="image/*" capture="user" aria-label="Upload a photo" hidden>
-        </div>
-        <p class="upload__error" id="uploadError" aria-live="polite">File is too large. Please choose an image under 5 MB.</p>
-        <div class="upload__preview" id="uploadPreview" hidden>
-          <img id="previewImg" alt="Your uploaded photo">
-          <button class="btn-remove" type="button" id="removePhoto" aria-label="Remove photo">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-              <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-            Remove
-          </button>
-        </div>
-        <button class="btn btn--primary btn-next" type="button">
-          Continue
-          <svg class="btn__arrow" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-      </div>
-    </section>
-
-    <!-- Screen 7: Contact + GDPR + Submit -->
-    <section class="screen" id="screen-7" data-screen="7" aria-label="Contact information">
-      <div class="screen__content">
-        <button class="btn-back" type="button" aria-label="Go back">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M16 10H4m0 0l4-4m-4 4l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          Back
-        </button>
-        <h2 class="screen__title">How can we reach you?</h2>
-        <p class="screen__subtitle">We'll get back to you within 48 hours.</p>
-        <div class="screen__input-wrap">
-          <label class="input-label" for="countryCode">WhatsApp</label>
-          <div class="input-group">
-            <select class="input-field input-field--select" id="countryCode" data-field="countryCode" aria-label="Country code">
+    <!-- 7: Contact -->
+    <div class="screen" data-s="7">
+      <div class="screen-inner">
+        <button class="btn-back" onclick="go(6)">← Back</button>
+        <h2>How can we reach you?</h2>
+        <p class="screen-subtitle">We'll get back to you within 48 hours.</p>
+        <div class="input-wrap">
+          <p class="input-label">WhatsApp</p>
+          <div class="input-row">
+            <select id="cc" data-field="countryCode">
               <option value="+49">🇩🇪 +49</option>
               <option value="+43">🇦🇹 +43</option>
               <option value="+41">🇨🇭 +41</option>
@@ -261,53 +257,117 @@
               <option value="+33">🇫🇷 +33</option>
               <option value="+34">🇪🇸 +34</option>
               <option value="+39">🇮🇹 +39</option>
-              <option value="+31">🇳🇱 +31</option>
-              <option value="+90">🇹🇷 +90</option>
               <option value="+30">🇬🇷 +30</option>
-              <option value="+46">🇸🇪 +46</option>
-              <option value="+48">🇵🇱 +48</option>
-              <option value="+351">🇵🇹 +351</option>
+              <option value="+90">🇹🇷 +90</option>
             </select>
-            <input class="input-field input-field--phone" type="tel" id="whatsappNumber" data-field="whatsapp" placeholder="Your number" aria-label="WhatsApp number" required>
+            <input type="tel" id="phone" data-field="whatsapp" placeholder="Your number">
           </div>
-          <p class="input-error" aria-live="polite">Please enter your WhatsApp number.</p>
-          <label class="input-label" for="instagramHandle">Instagram</label>
-          <div class="input-group input-group--prefix">
-            <span class="input-group__prefix" aria-hidden="true">@</span>
-            <input class="input-field input-field--with-prefix" type="text" id="instagramHandle" data-field="instagram" placeholder="your.handle" aria-label="Instagram handle">
+          <p class="input-error" id="phoneErr">Please enter your WhatsApp number.</p>
+          <p class="input-label">Instagram <span style="color:#555">(optional)</span></p>
+          <div class="ig-wrap">
+            <span class="ig-prefix">@</span>
+            <input type="text" id="ig" data-field="instagram" placeholder="your.handle">
           </div>
         </div>
-        <label class="checkbox-wrap" for="gdprCheckbox">
-          <input type="checkbox" id="gdprCheckbox" data-field="gdpr">
-          <span class="checkbox-wrap__label">I agree to the <a href="#" class="text-gold">privacy policy</a></span>
+        <label class="gdpr-label">
+          <input type="checkbox" id="gdpr" onchange="document.getElementById('submitBtn').disabled=!this.checked">
+          <span>I agree to the <a href="#">privacy policy</a></span>
         </label>
-        <button class="btn btn--primary btn-submit" type="button" id="submitBtn" disabled>
-          <span class="btn__text">Submit Application</span>
-          <svg class="btn__arrow" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
+        <button class="btn btn-primary" id="submitBtn" disabled onclick="submitForm()">Submit Application →</button>
       </div>
-    </section>
+    </div>
 
-    <!-- Screen 8: Thank You -->
-    <section class="screen" id="screen-8" data-screen="8" aria-label="Thank you">
-      <div class="screen__content screen__content--center">
-        <div class="thankyou">
-          <div class="thankyou__icon" aria-hidden="true">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-              <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <h2 class="screen__title">You're In!</h2>
-          <p class="thankyou__text">Thanks for applying. We'll review your profile and get back to you within <strong class="text-gold">48 hours</strong>.</p>
-          <p class="thankyou__hint">Keep an eye on your WhatsApp — that's how we'll reach out.</p>
-        </div>
+    <!-- 8: Thank you -->
+    <div class="screen" data-s="8">
+      <div class="screen-inner thankyou">
+        <div class="check-icon">✓</div>
+        <h2>You're In!</h2>
+        <p>Thanks for applying. We'll review your profile and get back to you within <strong>48 hours</strong>.</p>
+        <p>Keep an eye on your WhatsApp — that's how we'll reach out.</p>
       </div>
-    </section>
+    </div>
 
-  </main>
+  </div>
+</div>
 
-  <script src="app.js?v=3"></script>
+<script>
+var cur = 0, answers = {}, total = 7;
+
+function go(n) {
+  document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('active'); });
+  document.querySelector('[data-s="'+n+'"]').classList.add('active');
+  cur = n;
+  document.getElementById('pf').style.width = (n === 0 ? 0 : n > total ? 100 : Math.round(n/total*100)) + '%';
+  window.scrollTo(0,0);
+}
+
+// Choice cards — tap to select + auto-advance
+document.querySelectorAll('.choices').forEach(function(group) {
+  var field = group.getAttribute('data-field');
+  group.querySelectorAll('.choice').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      group.querySelectorAll('.choice').forEach(function(c) { c.classList.remove('selected'); });
+      btn.classList.add('selected');
+      answers[field] = btn.getAttribute('data-v');
+      setTimeout(function() { go(cur + 1); }, 250);
+    });
+  });
+});
+
+function next(fromScreen) {
+  var screen = document.querySelector('[data-s="'+fromScreen+'"]');
+  var ta = screen.querySelector('textarea');
+  var err = screen.querySelector('.input-error');
+  if (ta && !ta.value.trim()) {
+    if (err) err.classList.add('show');
+    ta.style.borderColor = '#e74c3c';
+    ta.focus();
+    return;
+  }
+  if (ta) {
+    answers[ta.getAttribute('data-field')] = ta.value.trim();
+    if (err) err.classList.remove('show');
+    ta.style.borderColor = '';
+  }
+  go(fromScreen + 1);
+}
+
+function handlePhoto(input) {
+  var file = input.files[0];
+  if (!file) return;
+  if (file.size > 5*1024*1024) { alert('File too large (max 5 MB)'); return; }
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    document.getElementById('previewImg').src = e.target.result;
+    document.getElementById('preview').style.display = 'block';
+    document.getElementById('uploadArea').style.display = 'none';
+    answers.photo = file.name;
+  };
+  reader.readAsDataURL(file);
+}
+
+function removePhoto() {
+  document.getElementById('photoIn').value = '';
+  document.getElementById('preview').style.display = 'none';
+  document.getElementById('uploadArea').style.display = '';
+  delete answers.photo;
+}
+
+function submitForm() {
+  var phone = document.getElementById('phone').value.trim();
+  if (!phone) {
+    document.getElementById('phoneErr').classList.add('show');
+    document.getElementById('phone').style.borderColor = '#e74c3c';
+    return;
+  }
+  answers.whatsapp = document.getElementById('cc').value + ' ' + phone;
+  var ig = document.getElementById('ig').value.trim();
+  if (ig) answers.instagram = ig;
+  answers.gdpr = true;
+  console.log('Submitted:', JSON.stringify(answers, null, 2));
+  go(8);
+}
+</script>
 </body>
 </html>
