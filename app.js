@@ -44,34 +44,15 @@
 
     if (!targetEl || targetIndex === state.currentScreen) return;
 
-    var goingForward = targetIndex > state.currentScreen;
-
-    // Position target off-screen
-    targetEl.style.transition = 'none';
-    targetEl.classList.remove('screen--active', 'screen--exit-left');
-    targetEl.style.transform = goingForward ? 'translateX(100%)' : 'translateX(-100%)';
-    targetEl.style.opacity = '0';
-
-    // Force reflow
-    void targetEl.offsetWidth;
-
-    // Re-enable transitions
-    targetEl.style.transition = '';
-
-    // Animate current out
-    currentEl.classList.remove('screen--active');
-    if (goingForward) {
-      currentEl.classList.add('screen--exit-left');
-    } else {
-      currentEl.style.transform = 'translateX(100%)';
-      currentEl.style.opacity = '0';
+    // Simple, mobile-safe approach: hide all, show target
+    // Clear ALL inline styles and transition classes from every screen
+    for (var i = 0; i < screens.length; i++) {
+      screens[i].classList.remove('screen--active', 'screen--exit-left');
+      screens[i].removeAttribute('style');
     }
-    currentEl.style.pointerEvents = 'none';
 
-    // Animate target in
+    // Activate target screen
     targetEl.classList.add('screen--active');
-    targetEl.style.transform = 'translateX(0)';
-    targetEl.style.opacity = '1';
 
     state.currentScreen = targetIndex;
     updateProgress();
