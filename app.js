@@ -70,8 +70,8 @@
 
     // Animate target in
     targetEl.classList.add('screen--active');
-    targetEl.style.transform = '';
-    targetEl.style.opacity = '';
+    targetEl.style.transform = 'translateX(0)';
+    targetEl.style.opacity = '1';
 
     state.currentScreen = targetIndex;
     updateProgress();

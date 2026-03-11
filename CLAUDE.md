@@ -97,3 +97,12 @@ Nach Submit: Thank-You Screen mit "Wir melden uns innerhalb von 48h"
 - [US-006] validateContactScreen() is separate from validateCurrentScreen() because submit doesn't go through btn-next flow
 - [US-006] Error clearing via event delegation needs to check grandparent for nested input-group layouts
 - [US-006] SELECT elements need to be included in saveCurrentScreenInputs() alongside INPUT and TEXTAREA
+- [US-007] CSS @keyframes with animation-fill-mode:both ensures elements start invisible and end visible for staggered entrances
+- [US-007] Radial-gradient glow with scale animation on ::before pseudo-element avoids layout shifts while creating depth
+- [US-007] Shimmer effect on badge uses left:-100% to 100% animation on a ::after pseudo-element with linear-gradient
+- [US-007] background-clip:text + -webkit-text-fill-color:transparent creates gradient text that works in Chrome and Safari
+- [US-007] Submit loading state uses ::after pseudo-element spinner so no HTML changes needed beyond wrapping text in a span
+- [US-007] stroke-dasharray/dashoffset animation creates a convincing "draw" effect for SVG checkmark paths
+- [US-007] prefers-reduced-motion:reduce should override with !important to catch all animation/transition properties
+- [US-007] viewport-fit=cover meta tag is required for env(safe-area-inset-*) to take effect on iOS
+- [US-007] cubic-bezier(0.175, 0.885, 0.32, 1.275) creates an elastic overshoot effect for pop-in animations
