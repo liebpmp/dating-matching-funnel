@@ -881,22 +881,9 @@ body {
 .screen--active .screen__title { animation-delay: 0.05s; }
 .screen--active .screen__subtitle { animation-delay: 0.15s; }
 
-.screen--active .screen__choices,
-.screen--active .screen__input-wrap,
-.screen--active .upload,
-.screen--active .upload__preview,
-.screen--active .checkbox-wrap,
-.screen--active .btn-next,
-.screen--active .btn-submit {
-  animation: fade-up 0.5s ease both;
-  animation-delay: 0.25s;
-}
+/* Interactive elements — no animation (mobile touch compat) */
 
-/* Choice cards stagger individually */
-.screen--active .screen__choices .choice-card:nth-child(1) { animation: fade-up 0.45s ease both; animation-delay: 0.2s; }
-.screen--active .screen__choices .choice-card:nth-child(2) { animation: fade-up 0.45s ease both; animation-delay: 0.3s; }
-.screen--active .screen__choices .choice-card:nth-child(3) { animation: fade-up 0.45s ease both; animation-delay: 0.4s; }
-.screen--active .screen__choices .choice-card:nth-child(4) { animation: fade-up 0.45s ease both; animation-delay: 0.5s; }
+/* Choice cards — no stagger animation (mobile touch compatibility) */
 
 /* ============================================
    Submit Button Loading State (US-007)
@@ -980,10 +967,12 @@ body {
   }
 }
 
-/* Touch callout disable on interactive elements */
+/* Touch handling for mobile */
 .btn, .choice-card, .upload {
-  -webkit-touch-callout: none;
-  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: rgba(201, 169, 110, 0.2);
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 /* Smooth momentum scrolling for screens that overflow */
